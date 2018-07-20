@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write 'src/**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "emotion": "^9.2.6",
+    "emotion-server": "^9.2.6",
+    "emotion-theming": "^9.2.6",
+    "gatsby": "^1.9.273",
+    "gatsby-link": "^1.6.45",
+    "gatsby-plugin-emotion": "^1.1.17",
+    "gatsby-plugin-react-helmet": "^2.0.11",
+    "gatsby-plugin-react-next": "^1.0.11",
+    "react-emotion": "^9.2.6",
+    "react-helmet": "^5.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.12.0"
+  }
+}
