@@ -79,22 +79,22 @@ const Layout = ({ children, data }) => (
             }}
           >
             <li>
-              <a href="#" target="_blank">
+              <a href="http://linkedin.com/in/saijogeorge" target="_blank">
                 <Icon icon="linkedIn" />
               </a>
             </li>
             <li>
-              <a href="#" target="_blank">
+              <a href="http://facebook.com/saijogeorge" target="_blank">
                 <Icon icon="facebook" />
               </a>
             </li>
             <li>
-              <a href="#" target="_blank">
+              <a href="http://twitter.com/saijogeorge" target="_blank">
                 <Icon icon="twitter" />
               </a>
             </li>
             <li>
-              <a href="#" target="_blank">
+              <a href="mailto:contact@tldrmarketing.com">
                 <Icon icon="mail" />
               </a>
             </li>
