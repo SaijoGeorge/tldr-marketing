@@ -1,12 +1,49 @@
 import React, { Fragment } from 'react'
-import Link from 'gatsby-link'
+import styled from 'react-emotion'
 import theme from '../styles/theme'
+import Link from 'gatsby-link'
 import WideText from '../components/WideText'
 import WideLink from '../components/WideLink'
 
 import avatar from '../assets/saijo-george.png'
 
 const { rem } = theme.tools
+
+const CategoryLink = styled(Link)(
+  {
+    display: 'flex',
+    alignItems: 'center',
+    padding: `${rem(7)} ${rem(14)}`,
+    position: 'relative',
+    zIndex: 1,
+    fontWeight: 800,
+    fontSize: rem(14),
+    borderRadius: 5,
+    transition: '.2s',
+    '::before': {
+      content: '""',
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      zIndex: -1,
+      left: 0,
+      top: 0,
+      borderRadius: 'inherit',
+      transition: 'inherit',
+      transform: 'scale(.9)',
+      opacity: 0,
+    },
+    ':hover': {
+      color: '#fff',
+      '::before': {
+        opacity: 1,
+        transform: 'none',
+      },
+    },
+  },
+  ({ hoverColor }) => ({ '::before': { background: hoverColor } })
+)
 
 const Categories = props => (
   <ul
@@ -16,91 +53,76 @@ const Categories = props => (
       justifyContent: 'space-between',
       alignContent: 'center',
       alignItems: 'center',
-      // position: 'sticky',
-      // top: 0,
       margin: `0 ${rem(-14)}`,
       color: theme.colors.text.blue.dark,
-      'li > *': {
-        display: 'block',
-        padding: `${rem(7)} ${rem(14)}`,
-        fontWeight: 800,
-        fontSize: rem(14),
-        borderRadius: 5,
-      },
-      'li > *:not(.not-menu-link)': {
-        position: 'relative',
-        zIndex: 1,
-        transition: '.2s',
-        ':hover': {
-          color: '#fff',
-          '::before': {
-            opacity: 1,
-            transform: 'none',
-          },
-        },
-        '::before': {
-          content: '""',
-          display: 'block',
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          zIndex: -1,
-          left: 0,
-          top: 0,
-          borderRadius: 'inherit',
-          transition: 'inherit',
-          background: 'var(--color)',
-          transform: 'scale(.9)',
-          opacity: 0,
-        },
-      },
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+      background: theme.colors.bg.blue.light,
+      boxShadow: `0 0 40px 30px ${theme.colors.bg.blue.light}`,
+      paddingTop: rem(15),
+      marginBottom: rem(15),
     }}
     {...props}
   >
     <li>
-      <Link css={{ '--color': '#E0697D' }} to="/category/seo">
+      <CategoryLink hoverColor="#E0697D" to="/category/seo">
         SEO
-      </Link>
+      </CategoryLink>
     </li>
     <li>
-      <Link css={{ '--color': '#4E8ED9' }} to="/category/paid-media">
+      <CategoryLink hoverColor="#4E8ED9" to="/category/paid-media">
         Paid Media
-      </Link>
+      </CategoryLink>
     </li>
     <li>
-      <Link css={{ '--color': '#4FB996' }} to="/category/social-media">
+      <CategoryLink hoverColor="#4FB996" to="/category/social-media">
         Social Media
-      </Link>
+      </CategoryLink>
     </li>
     <li>
-      <Link css={{ '--color': '#39C2C2' }} to="/category/general">
+      <CategoryLink hoverColor="#39C2C2" to="/category/general">
         General
-      </Link>
+      </CategoryLink>
     </li>
     <li>
-      <Link css={{ '--color': '#F4A93A' }} to="/category/jobs">
+      <CategoryLink hoverColor="#F4A93A" to="/category/jobs">
         Jobs
-      </Link>
+      </CategoryLink>
     </li>
     <li>
-      <Link css={{ '--color': '#C583DE' }} to="/category/tips-and-tricks">
+      <CategoryLink hoverColor="#C583DE" to="/category/tips-and-tricks">
         Tips & Tricks
-      </Link>
+      </CategoryLink>
     </li>
     <li>
-      <Link css={{ '--color': '#DE83B4' }} to="/category/interview">
+      <CategoryLink hoverColor="#DE83B4" to="/category/interview">
         Interview
-      </Link>
+      </CategoryLink>
     </li>
     <li>
-      <button
-        className="not-menu-link"
-        css={{
-          color: theme.colors.text.blue.light,
-        }}
+      <CategoryLink
+        to="/search"
+        css={{ color: theme.colors.text.blue.light }}
+        hoverColor={theme.colors.text.blue.light}
       >
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 13 13"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          css={{ marginRight: 5 }}
+        >
+          <circle cx="4.57143" cy="4.57143" r="3.57143" />
+          <path
+            d="M0 0L4.57143 4.57143"
+            transform="translate(7.42847 7.42871)"
+          />
+        </svg>
         Search
-      </button>
+      </CategoryLink>
     </li>
   </ul>
 )
@@ -167,7 +189,7 @@ const Item = ({ color, label }) => (
             display: 'block',
             width: '100%',
             height: 0,
-            paddingBottom: '66%',
+            paddingBottom: '58%',
           },
         }}
       />
@@ -178,27 +200,16 @@ const Item = ({ color, label }) => (
 const IndexPage = () => (
   <Fragment>
     <Categories style={{ gridArea: 'Menu' }} />
-    <div
-      style={{
-        gridArea: 'Sidebar',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: `${rem(24)} ${theme.space.rem.lg} ${theme.space.rem.lg}`,
-      }}
-    >
+    <div style={{ gridArea: 'Content' }}>
       <div
         css={{
-          position: 'sticky',
-          top: 150,
-          color: theme.colors.text.blue.dark,
+          position: 'fixed',
+          zIndex: 1,
+          bottom: theme.space.rem.lg,
+          background: 'rgba(239, 245, 248, 0.9)',
+          boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
         }}
       >
-        <h3 css={{ fontWeight: 600, fontSize: rem(40), lineHeight: 1.2 }}>
-          thursday
-        </h3>
-        <span css={{ fontWeight: 700, fontSize: rem(18) }}>05/24</span>
-      </div>
-      <div css={{ position: 'fixed', bottom: theme.space.rem.lg }}>
         <img
           src={avatar}
           alt="Saijo George"
@@ -234,23 +245,92 @@ const IndexPage = () => (
       </div>
     </div>
     <div style={{ gridArea: 'Content' }}>
-      <ul
+      <div
         css={{
+          display: 'grid',
+          alignItems: 'start',
+          gridTemplate: `
+            "Sidebar Content"
+            / 25% 1fr
+          `,
           marginBottom: theme.space.rem.xxl,
-          boxShadow: '0 5px 25px #CFDEE5',
-          borderRadius: 8,
-          li: {
-            '&:first-child': { borderRadius: '8px 8px 0 0' },
-            '&:last-child': { borderRadius: '0 0 8px 8px' },
-            '&:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
-          },
         }}
       >
-        <Item label="Paid Media" color="#4E8ED9" />
-        <Item label="SEO" color="#E0697D" />
-        <Item label="Tips & Tricks" color="#C583DE" />
-        <Item label="Jobs" color="#F4A93A" />
-      </ul>
+        <div
+          style={{ gridArea: 'Sidebar' }}
+          css={{
+            position: 'sticky',
+            top: rem(150),
+            color: theme.colors.text.blue.dark,
+          }}
+        >
+          <h3 css={{ fontWeight: 600, fontSize: rem(40), lineHeight: 1.2 }}>
+            thursday
+          </h3>
+          <span css={{ fontWeight: 700, fontSize: rem(18) }}>05/24</span>
+        </div>
+        <div style={{ gridArea: 'Content' }}>
+          <ul
+            css={{
+              boxShadow: '0 5px 25px #CFDEE5',
+              borderRadius: 8,
+              li: {
+                '&:first-child': { borderRadius: '8px 8px 0 0' },
+                '&:last-child': { borderRadius: '0 0 8px 8px' },
+                '&:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              },
+            }}
+          >
+            <Item label="Paid Media" color="#4E8ED9" />
+            <Item label="SEO" color="#E0697D" />
+            <Item label="Tips & Tricks" color="#C583DE" />
+            <Item label="Jobs" color="#F4A93A" />
+          </ul>
+        </div>
+      </div>
+      <div
+        css={{
+          display: 'grid',
+          alignItems: 'start',
+          gridTemplate: `
+            "Sidebar Content"
+            / 25% 1fr
+          `,
+          marginBottom: theme.space.rem.xxl,
+        }}
+      >
+        <div
+          style={{ gridArea: 'Sidebar' }}
+          css={{
+            position: 'sticky',
+            top: rem(150),
+            color: theme.colors.text.blue.dark,
+          }}
+        >
+          <h3 css={{ fontWeight: 600, fontSize: rem(40), lineHeight: 1.2 }}>
+            friday
+          </h3>
+          <span css={{ fontWeight: 700, fontSize: rem(18) }}>05/25</span>
+        </div>
+        <div style={{ gridArea: 'Content' }}>
+          <ul
+            css={{
+              boxShadow: '0 5px 25px #CFDEE5',
+              borderRadius: 8,
+              li: {
+                '&:first-child': { borderRadius: '8px 8px 0 0' },
+                '&:last-child': { borderRadius: '0 0 8px 8px' },
+                '&:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              },
+            }}
+          >
+            <Item label="Paid Media" color="#4E8ED9" />
+            <Item label="SEO" color="#E0697D" />
+            <Item label="Tips & Tricks" color="#C583DE" />
+            <Item label="Jobs" color="#F4A93A" />
+          </ul>
+        </div>
+      </div>
     </div>
   </Fragment>
 )
