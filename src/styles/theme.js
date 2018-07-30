@@ -23,7 +23,12 @@ const breakpoints = {
   desktopLg: 1920,
 }
 
-const space = {
+const media = Object.entries(breakpoints).reduce((acc, [key, val]) => {
+  acc[key] = `@media (min-width: ${tools.em(val)})`
+  return acc
+}, {})
+
+const spaceValues = {
   xxs: 2,
   xs: 4,
   sm: 8,
@@ -33,36 +38,38 @@ const space = {
   xxl: 128,
 }
 
-const spaceRem = Object.entries(space).reduce((acc, [key, val]) => {
-  acc[key] = tools.rem(val)
-  return acc
-}, {})
+const spaceValuesInRems = Object.entries(spaceValues).reduce(
+  (acc, [key, val]) => {
+    acc[key] = tools.rem(val)
+    return acc
+  },
+  {}
+)
 
-const media = Object.entries(breakpoints).reduce((acc, [key, val]) => {
-  acc[key] = `@media (min-width: ${tools.em(val)})`
-  return acc
-}, {})
+const space = {
+  ...spaceValues,
+  rem: spaceValuesInRems,
+}
+
+const colors = {
+  text: {
+    blue: {
+      light: '#B1BFC6',
+      dark: '#263E5B',
+    },
+  },
+  bg: {
+    blue: {
+      light: '#EFF5F8',
+      normal: '#CCE0EA',
+    },
+  },
+}
 
 export default {
   tools,
   breakpoints,
   media,
-  space: {
-    ...space,
-    rem: spaceRem,
-  },
-  colors: {
-    text: {
-      blue: {
-        light: '#B1BFC6',
-        dark: '#263E5B',
-      },
-    },
-    bg: {
-      blue: {
-        light: '#EFF5F8',
-        normal: '#CCE0EA',
-      },
-    },
-  },
+  space,
+  colors,
 }
