@@ -359,19 +359,25 @@ const Item = ({
             css={{
               position: 'absolute',
               left: '100%',
-              top: on ? 100 : '50%',
+              top: 0,
+              paddingTop: '24%',
               transform: 'translateY(-50%)',
-              padding: `${rem(16)} ${rem(4)}`,
-              fontWeight: 800,
-              fontSize: rem(12),
-              color: '#fff',
-              writingMode: 'vertical-lr',
-              whiteSpace: 'nowrap',
-              background: categories[category].color,
-              borderRadius: '0 5px 5px 0',
             }}
           >
-            {categories[category].label}
+            <div
+              css={{
+                padding: `${rem(16)} ${rem(4)}`,
+                fontWeight: 800,
+                fontSize: rem(12),
+                color: '#fff',
+                writingMode: 'vertical-lr',
+                whiteSpace: 'nowrap',
+                background: categories[category].color,
+                borderRadius: '0 5px 5px 0',
+              }}
+            >
+              {categories[category].label}
+            </div>
           </div>
           <article css={{ display: 'flex', alignItems: 'center' }}>
             <div
@@ -520,7 +526,13 @@ const Item = ({
                 </WideLink>
               )}
             </div>
-            <div css={{ alignSelf: 'flex-start', flexBasis: '35%' }}>
+            <div
+              css={{
+                alignSelf: 'flex-start',
+                flexBasis: '35%',
+                marginBottom: rem(20),
+              }}
+            >
               {img && <ZoomImg img={img} />}
               {on &&
                 (senderName || senderTwitter) && (
