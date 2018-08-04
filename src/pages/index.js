@@ -666,7 +666,7 @@ const IndexPage = () => (
       <div
         css={{
           position: 'fixed',
-          zIndex: 1,
+          zIndex: 4,
           bottom: space.rem.lg,
           background: 'rgba(239, 245, 248, 0.9)',
           boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',

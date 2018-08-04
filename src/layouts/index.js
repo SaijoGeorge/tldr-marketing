@@ -184,7 +184,7 @@ const Layout = ({ children, data }) => (
               [media.mobileLg]: { paddingLeft: rem(24) },
               [min(940)]: {
                 position: 'sticky',
-                zIndex: 1,
+                zIndex: 4,
                 top: space.rem.lg,
                 paddingLeft: 0,
               },
