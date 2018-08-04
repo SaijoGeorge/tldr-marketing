@@ -28,6 +28,10 @@ const media = Object.entries(breakpoints).reduce((acc, [key, val]) => {
   return acc
 }, {})
 
+const min = width => `@media (min-width: ${tools.em(width)})`
+
+const max = width => `@media (max-width: ${tools.em(width)})`
+
 const spaceValues = {
   xxs: 2,
   xs: 4,
@@ -62,6 +66,8 @@ const colors = {
     blue: {
       light: '#EFF5F8',
       normal: '#CCE0EA',
+      medium: '#89ADDB',
+      dark: '#263E5B',
     },
   },
 }
@@ -70,6 +76,8 @@ export default {
   tools,
   breakpoints,
   media,
+  min,
+  max,
   space,
   colors,
 }

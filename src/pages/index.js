@@ -12,37 +12,44 @@ import ZoomImg from '../components/ZoomImg'
 
 import avatar from '../assets/saijo-george.png'
 
-const { rem } = theme.tools
+const {
+  min,
+  max,
+  media,
+  space,
+  colors,
+  tools: { rem },
+} = theme
 
 const categories = {
   seo: {
-    color: '#E0697D',
+    color: '#4FB996',
     label: 'SEO',
   },
   'paid-media': {
-    color: '#4E8ED9',
+    color: '#F4A93A',
     label: 'Paid Media',
   },
   'social-media': {
-    color: '#4FB996',
+    color: '#4E8ED9',
     label: 'Social Media',
   },
   general: {
-    color: '#39C2C2',
+    color: '#DE83B4',
     label: 'General',
   },
   jobs: {
-    color: '#F4A93A',
+    color: '#C583DE',
     label: 'Jobs',
   },
   'tips-and-tricks': {
-    color: '#C583DE',
+    color: '#E0697D',
     label: 'Tips & Tricks',
   },
-  interview: {
-    color: '#DE83B4',
-    label: 'Interview',
-  },
+  // interview: {
+  //   color: '#000000',
+  //   label: 'Interview',
+  // },
 }
 
 const links = [
@@ -257,6 +264,14 @@ const CategoryLink = styled(Link)(
     fontSize: rem(14),
     borderRadius: 5,
     transition: '.2s',
+    color: '#fff',
+    [min(940)]: {
+      color: 'inherit',
+      '::before': {
+        transform: 'scale(.9)',
+        opacity: 0,
+      },
+    },
     '::before': {
       content: '""',
       display: 'block',
@@ -268,8 +283,6 @@ const CategoryLink = styled(Link)(
       top: 0,
       borderRadius: 'inherit',
       transition: 'inherit',
-      transform: 'scale(.9)',
-      opacity: 0,
     },
     ':hover': {
       color: '#fff',
@@ -283,57 +296,74 @@ const CategoryLink = styled(Link)(
 )
 
 const Categories = props => (
-  <ul
+  <div
     css={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-      alignContent: 'center',
-      alignItems: 'center',
-      margin: `0 ${rem(-14)}`,
-      color: theme.colors.text.blue.dark,
       position: 'sticky',
       top: 0,
-      zIndex: 1,
-      background: theme.colors.bg.blue.light,
-      boxShadow: `0 0 40px 30px ${theme.colors.bg.blue.light}`,
-      paddingTop: rem(15),
-      marginBottom: rem(15),
+      zIndex: 3,
+      [max(940 - 1)]: {
+        padding: rem(10),
+        whiteSpace: 'nowrap',
+        backgroundColor: colors.bg.blue.dark,
+        overflow: 'auto',
+        WebkitOverflowScrolling: 'touch',
+      },
     }}
     {...props}
   >
-    {Object.entries(categories).map(([slug, { color, label }]) => (
+    <ul
+      css={{
+        display: 'inline-flex',
+        alignContent: 'center',
+        alignItems: 'center',
+        color: colors.text.blue.dark,
+        '> li': { marginRight: rem(10) },
+        [min(940)]: {
+          '> li': { marginRight: 0 },
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          paddingTop: rem(15),
+          paddingBottom: rem(15),
+          margin: `0 ${rem(-14)}`,
+          backgroundColor: colors.bg.blue.light,
+          boxShadow: `0 0 40px 30px ${colors.bg.blue.light}`,
+        },
+      }}
+    >
+      {Object.entries(categories).map(([slug, { color, label }]) => (
+        <li>
+          <CategoryLink hoverColor={color} to={`/category/${slug}`}>
+            {label}
+          </CategoryLink>
+        </li>
+      ))}
       <li>
-        <CategoryLink hoverColor={color} to={`/category/${slug}`}>
-          {label}
+        <CategoryLink
+          to="/search"
+          css={{ [min(940)]: { color: colors.text.blue.light } }}
+          hoverColor={colors.text.blue.light}
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            css={{ marginRight: 5 }}
+          >
+            <circle cx="4.57143" cy="4.57143" r="3.57143" />
+            <path
+              d="M0 0L4.57143 4.57143"
+              transform="translate(7.42847 7.42871)"
+            />
+          </svg>
+          Search
         </CategoryLink>
       </li>
-    ))}
-    <li>
-      <CategoryLink
-        to="/search"
-        css={{ color: theme.colors.text.blue.light }}
-        hoverColor={theme.colors.text.blue.light}
-      >
-        <svg
-          width="13"
-          height="13"
-          viewBox="0 0 13 13"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          css={{ marginRight: 5 }}
-        >
-          <circle cx="4.57143" cy="4.57143" r="3.57143" />
-          <path
-            d="M0 0L4.57143 4.57143"
-            transform="translate(7.42847 7.42871)"
-          />
-        </svg>
-        Search
-      </CategoryLink>
-    </li>
-  </ul>
+    </ul>
+  </div>
 )
 
 const Item = ({
@@ -350,30 +380,38 @@ const Item = ({
           className="post"
           css={{
             position: 'relative',
-            padding: rem(20),
-            paddingBottom: 0,
+            [min(940)]: { padding: rem(20), paddingBottom: 0 },
             background: '#fff',
           }}
         >
           <div
             css={{
               position: 'absolute',
-              left: '100%',
+              zIndex: 1,
+              left: '58%',
               top: 0,
-              paddingTop: '24%',
-              transform: 'translateY(-50%)',
+              [min(940)]: {
+                left: '100%',
+                paddingTop: '24%',
+                transform: 'translateY(-50%)',
+              },
             }}
           >
             <div
               css={{
-                padding: `${rem(16)} ${rem(4)}`,
+                padding: `${rem(4)} ${rem(16)}`,
                 fontWeight: 800,
-                fontSize: rem(12),
+                fontSize: rem(10),
                 color: '#fff',
-                writingMode: 'vertical-lr',
                 whiteSpace: 'nowrap',
                 background: categories[category].color,
-                borderRadius: '0 5px 5px 0',
+                borderRadius: '0 0 5px 0',
+                [min(940)]: {
+                  padding: `${rem(16)} ${rem(4)}`,
+                  fontSize: rem(12),
+                  writingMode: 'vertical-lr',
+                  borderRadius: '0 5px 5px 0',
+                },
               }}
             >
               {categories[category].label}
@@ -382,9 +420,18 @@ const Item = ({
           <article css={{ display: 'flex', alignItems: 'center' }}>
             <div
               css={{
-                flexBasis: '65%',
-                padding: rem(12),
-                paddingRight: rem(24),
+                flexBasis: '58%',
+                padding: space.rem.md,
+                paddingBottom: space.rem.sm,
+                [media.mobileLg]: {
+                  padding: rem(24),
+                  paddingBottom: rem(12),
+                },
+                [min(940)]: {
+                  flexBasis: '65%',
+                  padding: rem(12),
+                  paddingRight: rem(24),
+                },
                 overflow: 'hidden',
               }}
             >
@@ -408,15 +455,31 @@ const Item = ({
                       },
                     }}
                   >
-                    <h3
-                      css={{
-                        fontWeight: 800,
-                        fontSize: rem(19),
-                        color: '#333',
-                      }}
-                    >
-                      {title}
-                    </h3>
+                    {on ? (
+                      <h3
+                        css={{
+                          fontWeight: 800,
+                          fontSize: rem(14),
+                          [min(940)]: { fontSize: rem(19) },
+                          color: '#333',
+                        }}
+                      >
+                        {title}
+                      </h3>
+                    ) : (
+                      <TextTruncate
+                        element="h3"
+                        line={2}
+                        truncateText="…"
+                        text={title}
+                        css={{
+                          fontWeight: 800,
+                          fontSize: rem(14),
+                          [min(940)]: { fontSize: rem(19) },
+                          color: '#333',
+                        }}
+                      />
+                    )}
                     <span
                       css={{
                         display: 'block',
@@ -437,6 +500,9 @@ const Item = ({
                 <ReactMarkdown
                   source={description}
                   css={{
+                    [max(940 - 1)]: {
+                      display: 'none',
+                    },
                     marginTop: rem(13),
                     fontSize: rem(16),
                     lineHeight: 1.6,
@@ -461,6 +527,9 @@ const Item = ({
                   truncateText="…"
                   text={description}
                   css={{
+                    [max(940 - 1)]: {
+                      display: 'none',
+                    },
                     marginTop: rem(13),
                     fontSize: rem(16),
                     lineHeight: 1.6,
@@ -479,12 +548,20 @@ const Item = ({
                     textAlign: 'left',
                     cursor: 'pointer',
                     outline: 'none',
+                    fontSize: rem(8),
+                    [min(940)]: { fontSize: rem(10) },
                   }}
                 >
                   Show less{' '}
                   <svg
-                    width="10"
-                    height="7"
+                    css={{
+                      width: 9,
+                      height: 6,
+                      [min(940)]: {
+                        width: 10,
+                        height: 7,
+                      },
+                    }}
                     viewBox="0 0 10 7"
                     fill="none"
                     stroke="currentColor"
@@ -499,6 +576,7 @@ const Item = ({
               ) : (
                 <WideLink
                   to={`/links/abc123`}
+                  rel="nofollow"
                   onClick={e => {
                     e.preventDefault()
                     setOn()
@@ -507,12 +585,20 @@ const Item = ({
                     display: 'block',
                     paddingTop: rem(16),
                     paddingLeft: 0,
+                    fontSize: rem(8),
+                    [min(940)]: { fontSize: rem(10) },
                   }}
                 >
                   Show more{' '}
                   <svg
-                    width="10"
-                    height="7"
+                    css={{
+                      width: 9,
+                      height: 6,
+                      [min(940)]: {
+                        width: 10,
+                        height: 7,
+                      },
+                    }}
                     viewBox="0 0 10 7"
                     fill="none"
                     stroke="currentColor"
@@ -528,9 +614,13 @@ const Item = ({
             </div>
             <div
               css={{
-                alignSelf: 'flex-start',
-                flexBasis: '35%',
-                marginBottom: rem(20),
+                alignSelf: 'stretch',
+                flexBasis: '42%',
+                [min(940)]: {
+                  alignSelf: 'flex-start',
+                  flexBasis: '35%',
+                  marginBottom: rem(20),
+                },
               }}
             >
               {img && <ZoomImg img={img} />}
@@ -569,12 +659,15 @@ const Item = ({
 const IndexPage = () => (
   <Fragment>
     <Categories style={{ gridArea: 'Menu' }} />
-    <div style={{ gridArea: 'Content' }}>
+    <div
+      style={{ gridArea: 'Content' }}
+      css={{ [max(940 - 1)]: { display: 'none' } }}
+    >
       <div
         css={{
           position: 'fixed',
           zIndex: 1,
-          bottom: theme.space.rem.lg,
+          bottom: space.rem.lg,
           background: 'rgba(239, 245, 248, 0.9)',
           boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
         }}
@@ -602,7 +695,7 @@ const IndexPage = () => (
             fontWeight: 700,
             fontSize: rem(18),
             lineHeight: 1.2,
-            color: theme.colors.text.blue.dark,
+            color: colors.text.blue.dark,
           }}
         >
           Created by<br />
@@ -618,39 +711,97 @@ const IndexPage = () => (
         css={{
           display: 'grid',
           alignItems: 'start',
+          paddingBottom: rem(50),
           gridTemplate: `
-            "Sidebar Content"
-            / 25% 75%
+            "Sidebar"
+            "Content"
+            / 1fr
           `,
-          marginBottom: theme.space.rem.xxl,
+          [min(940)]: {
+            paddingBottom: space.rem.xxl,
+            gridTemplate: `
+              "Sidebar Content"
+              / 20% 80%
+            `,
+          },
+          [min(1130)]: {
+            gridTemplate: `
+              "Sidebar Content"
+              / 25% 75%
+            `,
+          },
+          [media.desktop]: {
+            gridTemplate: `
+              "Sidebar Content"
+              / minmax(25%, 1fr) ${rem(1000)}
+            `,
+          },
         }}
       >
         <div
           style={{ gridArea: 'Sidebar' }}
           css={{
             position: 'sticky',
-            top: rem(150),
-            color: theme.colors.text.blue.dark,
+            top: rem(53),
+            zIndex: 2,
+            paddingTop: rem(12),
+            paddingBottom: rem(12),
+            paddingLeft: space.rem.md,
+            [media.mobileLg]: { paddingLeft: rem(24) },
+            color: '#fff',
+            backgroundColor: colors.bg.blue.medium,
+            [min(940)]: {
+              top: rem(150),
+              padding: 0,
+              marginBottom: 0,
+              color: colors.text.blue.dark,
+              backgroundColor: 'initial',
+            },
           }}
         >
-          <h4 css={{ fontWeight: 600, fontSize: rem(40), lineHeight: 1.2 }}>
-            thursday
+          <h4
+            css={{
+              fontWeight: 800,
+              fontSize: rem(14),
+              lineHeight: 1.2,
+              [min(940)]: {
+                fontWeight: 600,
+                fontSize: rem(24),
+              },
+              [min(1130)]: {
+                fontSize: rem(40),
+              },
+            }}
+          >
+            thursday{' '}
             <span
-              css={{ display: 'block', fontWeight: 700, fontSize: rem(18) }}
+              css={{
+                [min(940)]: {
+                  display: 'block',
+                  fontWeight: 700,
+                  fontSize: rem(14),
+                },
+                [min(1130)]: { fontSize: rem(18) },
+              }}
             >
               05/24
             </span>
           </h4>
         </div>
-        <div style={{ gridArea: 'Content' }}>
+        <div
+          style={{ gridArea: 'Content' }}
+          css={{ [max(940 - 1)]: { marginTop: rem(10) } }}
+        >
           <ul
             css={{
-              boxShadow: '0 5px 25px #CFDEE5',
-              borderRadius: 8,
-              '> li': {
-                '&:first-child': { borderRadius: '8px 8px 0 0' },
-                '&:last-child': { borderRadius: '0 0 8px 8px' },
-                '&:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              '> li:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              [min(940)]: {
+                boxShadow: '0 5px 25px #CFDEE5',
+                borderRadius: 8,
+                '> li': {
+                  '&:first-child': { borderRadius: '8px 8px 0 0' },
+                  '&:last-child': { borderRadius: '0 0 8px 8px' },
+                },
               },
             }}
           >
@@ -662,39 +813,97 @@ const IndexPage = () => (
         css={{
           display: 'grid',
           alignItems: 'start',
+          paddingBottom: rem(50),
           gridTemplate: `
-            "Sidebar Content"
-            / 25% 75%
+            "Sidebar"
+            "Content"
+            / 1fr
           `,
-          marginBottom: theme.space.rem.xxl,
+          [min(940)]: {
+            paddingBottom: space.rem.xxl,
+            gridTemplate: `
+              "Sidebar Content"
+              / 20% 80%
+            `,
+          },
+          [min(1130)]: {
+            gridTemplate: `
+              "Sidebar Content"
+              / 25% 75%
+            `,
+          },
+          [media.desktop]: {
+            gridTemplate: `
+              "Sidebar Content"
+              / minmax(25%, 1fr) ${rem(1000)}
+            `,
+          },
         }}
       >
         <div
           style={{ gridArea: 'Sidebar' }}
           css={{
             position: 'sticky',
-            top: rem(150),
-            color: theme.colors.text.blue.dark,
+            top: rem(53),
+            zIndex: 2,
+            paddingTop: rem(12),
+            paddingBottom: rem(12),
+            paddingLeft: space.rem.md,
+            [media.mobileLg]: { paddingLeft: rem(24) },
+            color: '#fff',
+            backgroundColor: colors.bg.blue.medium,
+            [min(940)]: {
+              top: rem(150),
+              padding: 0,
+              marginBottom: 0,
+              color: colors.text.blue.dark,
+              backgroundColor: 'initial',
+            },
           }}
         >
-          <h4 css={{ fontWeight: 600, fontSize: rem(40), lineHeight: 1.2 }}>
-            friday
+          <h4
+            css={{
+              fontWeight: 800,
+              fontSize: rem(14),
+              lineHeight: 1.2,
+              [min(940)]: {
+                fontWeight: 600,
+                fontSize: rem(24),
+              },
+              [min(1130)]: {
+                fontSize: rem(40),
+              },
+            }}
+          >
+            firday{' '}
             <span
-              css={{ display: 'block', fontWeight: 700, fontSize: rem(18) }}
+              css={{
+                [min(940)]: {
+                  display: 'block',
+                  fontWeight: 700,
+                  fontSize: rem(14),
+                },
+                [min(1130)]: { fontSize: rem(18) },
+              }}
             >
               05/25
             </span>
           </h4>
         </div>
-        <div style={{ gridArea: 'Content' }}>
+        <div
+          style={{ gridArea: 'Content' }}
+          css={{ [max(940 - 1)]: { marginTop: rem(10) } }}
+        >
           <ul
             css={{
-              boxShadow: '0 5px 25px #CFDEE5',
-              borderRadius: 8,
-              li: {
-                '&:first-child': { borderRadius: '8px 8px 0 0' },
-                '&:last-child': { borderRadius: '0 0 8px 8px' },
-                '&:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              '> li:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              [min(940)]: {
+                boxShadow: '0 5px 25px #CFDEE5',
+                borderRadius: 8,
+                '> li': {
+                  '&:first-child': { borderRadius: '8px 8px 0 0' },
+                  '&:last-child': { borderRadius: '0 0 8px 8px' },
+                },
               },
             }}
           >

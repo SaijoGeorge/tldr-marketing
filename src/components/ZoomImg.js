@@ -3,6 +3,9 @@ import PhotoSwipe from 'photoswipe'
 import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
+import theme from '../styles/theme'
+
+const { min } = theme
 
 class ZoomImg extends Component {
   initGallery = () => {
@@ -47,13 +50,16 @@ class ZoomImg extends Component {
           role="img"
           aria-label={alt}
           css={{
+            height: '100%',
             position: 'relative',
             zIndex: 0,
-            borderRadius: 5,
             backgroundImage: `url(${src})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            border: 'solid 1px #e0ebf1',
+            [min(940)]: {
+              border: 'solid 1px #e0ebf1',
+              borderRadius: 5,
+            },
             '::after': {
               content: '""',
               display: 'block',
