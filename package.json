@@ -20,8 +20,10 @@
     "react-emotion": "^9.2.6",
     "react-helmet": "^5.2.0",
     "react-markdown": "^3.4.1",
+    "react-media": "^1.8.0",
     "react-text-truncate": "^0.13.1",
     "react-toggled": "^1.2.7",
+    "remove-markdown": "^0.3.0",
     "url-parse": "^1.4.1"
   },
   "devDependencies": {

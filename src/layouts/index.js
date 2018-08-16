@@ -49,7 +49,8 @@ const Layout = ({ children, data }) => (
         css={{
           display: 'grid',
           height: '100vh',
-          overflow: 'auto',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
           gridTemplate: `
             "Content"
             / 1fr

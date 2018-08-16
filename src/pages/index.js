@@ -5,10 +5,12 @@ import Link, { withPrefix } from 'gatsby-link'
 import Toggle from 'react-toggled'
 import parseURL from 'url-parse'
 import ReactMarkdown from 'react-markdown'
+import removeMd from 'remove-markdown'
 import TextTruncate from 'react-text-truncate'
 import WideLink from '../components/WideLink'
 import WideButton from '../components/WideButton'
 import ZoomImg from '../components/ZoomImg'
+import Media from 'react-media'
 
 import avatar from '../assets/saijo-george.png'
 
@@ -332,13 +334,13 @@ const Categories = props => (
       }}
     >
       {Object.entries(categories).map(([slug, { color, label }]) => (
-        <li>
+        <li key={slug}>
           <CategoryLink hoverColor={color} to={`/category/${slug}`}>
             {label}
           </CategoryLink>
         </li>
       ))}
-      <li>
+      <li css={{ [max(940 - 1)]: { order: -1 } }}>
         <CategoryLink
           to="/search"
           css={{ [min(940)]: { color: colors.text.blue.light } }}
@@ -388,7 +390,7 @@ const Item = ({
             css={{
               position: 'absolute',
               zIndex: 1,
-              left: '58%',
+              left: on ? 0 : '58%',
               top: 0,
               [min(940)]: {
                 left: '100%',
@@ -417,10 +419,18 @@ const Item = ({
               {categories[category].label}
             </div>
           </div>
-          <article css={{ display: 'flex', alignItems: 'center' }}>
+          <article
+            css={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: on ? 'wrap' : 'nowrap',
+              [min(940)]: { flexWrap: 'nowrap' },
+            }}
+          >
             <div
               css={{
-                flexBasis: '58%',
+                flexBasis: on ? '100%' : '58%',
+                order: on ? 2 : 1,
                 padding: space.rem.md,
                 paddingBottom: space.rem.sm,
                 [media.mobileLg]: {
@@ -431,78 +441,82 @@ const Item = ({
                   flexBasis: '65%',
                   padding: rem(12),
                   paddingRight: rem(24),
+                  order: 1,
                 },
                 overflow: 'hidden',
               }}
             >
-              <Toggle>
-                {({
-                  on: showFullURL,
-                  setOn: onMouseOver,
-                  setOff: onMouseLeave,
-                }) => (
-                  <a
-                    onMouseOver={onMouseOver}
-                    onMouseLeave={onMouseLeave}
-                    href={externalURL}
-                    target="_blank"
-                    rel="noopener"
-                    css={{
-                      display: 'block',
-                      borderRadius: 2,
-                      ':hover': {
-                        boxShadow: '0 0 0 5px #fff, 0 0 0 8px #add2e4',
-                      },
-                    }}
-                  >
-                    {on ? (
-                      <h3
+              <Media query="(min-width: 940px)">
+                {matches => (
+                  <Toggle>
+                    {({
+                      on: showFullURL,
+                      setOn: onMouseOver,
+                      setOff: onMouseLeave,
+                    }) => (
+                      <a
+                        {...matches && { onMouseOver, onMouseLeave }}
+                        href={externalURL}
+                        target="_blank"
+                        rel="noopener"
                         css={{
-                          fontWeight: 800,
-                          fontSize: rem(14),
-                          [min(940)]: { fontSize: rem(19) },
-                          color: '#333',
+                          display: 'block',
+                          borderRadius: 2,
+                          ':hover': {
+                            boxShadow: '0 0 0 5px #fff, 0 0 0 8px #add2e4',
+                          },
                         }}
                       >
-                        {title}
-                      </h3>
-                    ) : (
-                      <TextTruncate
-                        element="h3"
-                        line={2}
-                        truncateText="…"
-                        text={title}
-                        css={{
-                          fontWeight: 800,
-                          fontSize: rem(14),
-                          [min(940)]: { fontSize: rem(19) },
-                          color: '#333',
-                        }}
-                      />
+                        {on ? (
+                          <h3
+                            css={{
+                              fontWeight: 800,
+                              fontSize: rem(14),
+                              [min(940)]: { fontSize: rem(19) },
+                              color: '#333',
+                            }}
+                          >
+                            {title}
+                          </h3>
+                        ) : (
+                          <TextTruncate
+                            element="h3"
+                            line={2}
+                            truncateText="…"
+                            text={title}
+                            css={{
+                              fontWeight: 800,
+                              fontSize: rem(14),
+                              [min(940)]: { fontSize: rem(19) },
+                              color: '#333',
+                            }}
+                          />
+                        )}
+                        <span
+                          css={{
+                            display: 'block',
+                            marginTop: 3,
+                            fontSize: rem(14),
+                            color: '#777',
+                            whiteSpace: 'nowrap',
+                            textOverflow: 'ellipsis',
+                            overflow: 'hidden',
+                          }}
+                        >
+                          {showFullURL ? fullURL : hostname}
+                        </span>
+                      </a>
                     )}
-                    <span
-                      css={{
-                        display: 'block',
-                        marginTop: 3,
-                        fontSize: rem(14),
-                        color: '#777',
-                        whiteSpace: 'nowrap',
-                        textOverflow: 'ellipsis',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {showFullURL ? fullURL : hostname}
-                    </span>
-                  </a>
+                  </Toggle>
                 )}
-              </Toggle>
+              </Media>
               {on ? (
                 <ReactMarkdown
+                  renderers={{
+                    link: props => <a target="_blank" {...props} />,
+                  }}
                   source={description}
                   css={{
-                    [max(940 - 1)]: {
-                      display: 'none',
-                    },
                     marginTop: rem(13),
                     fontSize: rem(16),
                     lineHeight: 1.6,
@@ -525,7 +539,7 @@ const Item = ({
                   element="p"
                   line={2}
                   truncateText="…"
-                  text={description}
+                  text={removeMd(description)}
                   css={{
                     [max(940 - 1)]: {
                       display: 'none',
@@ -615,19 +629,75 @@ const Item = ({
             <div
               css={{
                 alignSelf: 'stretch',
-                flexBasis: '42%',
+                flexBasis: on ? '100%' : '42%',
+                order: on ? 1 : 2,
                 [min(940)]: {
                   alignSelf: 'flex-start',
                   flexBasis: '35%',
                   marginBottom: rem(20),
+                  order: 2,
                 },
               }}
             >
-              {img && <ZoomImg img={img} />}
+              {img ? (
+                <Media query="(min-width: 940px)">
+                  {matches =>
+                    matches ? (
+                      <ZoomImg img={img} />
+                    ) : (
+                      <div
+                        onClick={setOn}
+                        role="img"
+                        aria-label={img.alt}
+                        css={{
+                          height: '100%',
+                          position: 'relative',
+                          zIndex: 0,
+                          backgroundImage: `url(${img.src})`,
+                          backgroundPosition: 'center',
+                          backgroundSize: 'cover',
+                          '::after': {
+                            content: '""',
+                            display: 'block',
+                            width: '100%',
+                            height: 0,
+                            position: 'relative',
+                            zIndex: 1,
+                            paddingBottom: '58%',
+                          },
+                        }}
+                      />
+                    )
+                  }
+                </Media>
+              ) : (
+                <div
+                  css={{
+                    height: '100%',
+                    position: 'relative',
+                    zIndex: 0,
+                    [min(940)]: {
+                      border: 'solid 1px #e0ebf1',
+                      borderRadius: 5,
+                    },
+                    '::after': {
+                      content: '""',
+                      display: 'block',
+                      width: '100%',
+                      height: 0,
+                      position: 'relative',
+                      zIndex: 1,
+                      paddingBottom: '58%',
+                    },
+                  }}
+                />
+              )}
               {on &&
                 (senderName || senderTwitter) && (
                   <div
                     css={{
+                      display: 'none',
+                      [min(940)]: { display: 'block' },
                       marginTop: rem(13),
                       fontSize: rem(14),
                       color: '#777',
