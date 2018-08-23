@@ -513,7 +513,9 @@ const Item = ({
               {on ? (
                 <ReactMarkdown
                   renderers={{
-                    link: props => <a target="_blank" {...props} />,
+                    link: props => (
+                      <a target="_blank" rel="noopener" {...props} />
+                    ),
                   }}
                   source={description}
                   css={{
@@ -708,7 +710,7 @@ const Item = ({
                       <a
                         href={`https://twitter.com/${senderTwitter}`}
                         target="_blank"
-                        rel="noopener"
+                        rel="noindex noopener"
                         css={{ fontWeight: 800 }}
                       >
                         {senderName || senderTwitter}
