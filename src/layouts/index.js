@@ -242,13 +242,17 @@ const Layout = ({ children, data }) => (
                 color: colors.text.blue.dark,
                 background: 'rgba(239, 245, 248, 0.9)',
                 boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
-                svg: {
-                  display: 'block',
-                  flexShrink: 0,
-                },
               }}
             >
-              <svg width="45px" height="45px" viewBox="0 0 45 45">
+              <svg
+                viewBox="0 0 45 45"
+                css={{
+                  flexShrink: 0,
+                  display: 'block',
+                  width: 35,
+                  [min(480)]: { width: 45 },
+                }}
+              >
                 <circle fill="#263E5B" cx="22.5" cy="22.5" r="22.5" />
                 <path
                   fill="#4F87EC"
@@ -281,11 +285,12 @@ const Layout = ({ children, data }) => (
               </svg>
               <span
                 css={{
-                  fontWeight: 800,
-                  fontSize: 20,
-                  lineHeight: 1,
                   marginTop: 1,
-                  marginLeft: 15,
+                  marginLeft: 8,
+                  fontWeight: 800,
+                  fontSize: 16,
+                  lineHeight: 1,
+                  [min(480)]: { marginLeft: 15, fontSize: 20 },
                 }}
               >
                 tl;dr<br />marketing
