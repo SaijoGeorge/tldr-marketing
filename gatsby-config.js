@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: '/tldr-marketing',
   siteMetadata: {
-    title: 'TL;DR Marketing',
+    title: 'SEO News - 𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘',
   },
   plugins: [
     'gatsby-plugin-react-next',
@@ -24,7 +24,7 @@ module.exports = {
     // {
     //   resolve: `gatsby-plugin-google-tagmanager`,
     //   options: {
-    //     id: "YOUR_GOOGLE_TAGMANAGER_ID",
+    //     id: "GTM-WHPRDXX",
 
     //     // Include GTM in development.
     //     // Defaults to false meaning GTM will only be loaded in production.

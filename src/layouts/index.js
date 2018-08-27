@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
+import Link, { withPrefix } from 'gatsby-link'
 
 import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
@@ -36,13 +36,55 @@ const Layout = ({ children, data }) => (
   <ThemeProvider theme={theme}>
     <Fragment>
       <Helmet>
+        <html lang="en" />
         <title>{data.site.siteMetadata.title}</title>
-        <meta name="description" content="Sample" />
-        <meta name="keywords" content="sample, something" />
+        <meta
+          name="description"
+          content="Don't have the time to keep on top of all the changes influencing digital marketing? Get an 📧 with links to stories that impact Organic, Paid & Social Media Marketing news."
+        />
+        <meta name="author" content="Saijo George" />
+        <meta name="theme-color" content="#EFF5F8" />
+        <meta
+          name="google-site-verification"
+          content="80K9pINH7T-5zO28ITfloeGP_rcF6EH8zPlv24NtKaE"
+        />
+        <meta name="msvalidate.01" content="89C6D119C6589A0D7695ABCD238F2C9D" />
+        <meta name="yandex-verification" content="00fa43a53556943b" />
         <link
           href="https://fonts.googleapis.com/css?family=Nunito+Sans|Nunito:400,700,800,900"
           rel="stylesheet"
         />
+        <link rel="manifest" href={withPrefix('/manifest.json')} />
+        {/* <link rel="icon" href={withPrefix('/favicon.png')} /> */}
+        <link rel="canonical" href="https://tldrmarketing.com" />
+
+        <meta property="og:url" content="https://tldrmarketing.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="SEO News - 𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘" />
+        {/* <meta
+          property="og:image"
+          content="https://tldrmarketing.com/images/testimonials.png"
+        /> */}
+        <meta
+          property="og:description"
+          content="Don't have the time to keep on top of all the changes influencing digital marketing? Get an 📧 with links to stories that impact Organic, Paid & Social Media Marketing news."
+        />
+        <meta property="og:site_name" content="tl;dr Marketing" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="article:author" content="Saijo George" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@SaijoGeorge" />
+        <meta name="twitter:url" content="https://tldrmarketing.com" />
+        <meta name="twitter:title" content="SEO News - 𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘" />
+        <meta
+          name="twitter:description"
+          content="Don't have the time to keep on top of all the changes influencing digital marketing? Get an 📧 with links to stories that impact Organic, Paid & Social Media Marketing news."
+        />
+        {/* <meta
+          name="twitter:image"
+          content="https://tldrmarketing.com/images/testimonials.png"
+        /> */}
       </Helmet>
 
       <div
