@@ -384,6 +384,13 @@ const Item = ({
             position: 'relative',
             [min(940)]: { padding: rem(20), paddingBottom: 0 },
             background: '#fff',
+            [max(940 - 1)]: {
+              ...(on && {
+                borderBottom: 'none !important',
+                marginTop: rem(30),
+                marginBottom: `${rem(30)} !important`,
+              }),
+            },
           }}
         >
           <div
@@ -403,14 +410,13 @@ const Item = ({
               css={{
                 padding: `${rem(4)} ${rem(16)}`,
                 fontWeight: 800,
-                fontSize: rem(10),
+                fontSize: rem(12),
                 color: '#fff',
                 whiteSpace: 'nowrap',
                 background: categories[category].color,
                 borderRadius: '0 0 5px 0',
                 [min(940)]: {
                   padding: `${rem(16)} ${rem(4)}`,
-                  fontSize: rem(12),
                   writingMode: 'vertical-lr',
                   borderRadius: '0 5px 5px 0',
                 },
@@ -471,7 +477,7 @@ const Item = ({
                           <h3
                             css={{
                               fontWeight: 800,
-                              fontSize: rem(14),
+                              fontSize: rem(18),
                               [min(940)]: { fontSize: rem(19) },
                               color: '#333',
                             }}
@@ -486,7 +492,7 @@ const Item = ({
                             text={title}
                             css={{
                               fontWeight: 800,
-                              fontSize: rem(14),
+                              fontSize: rem(16),
                               [min(940)]: { fontSize: rem(19) },
                               color: '#333',
                             }}
@@ -564,8 +570,7 @@ const Item = ({
                     textAlign: 'left',
                     cursor: 'pointer',
                     outline: 'none',
-                    fontSize: rem(8),
-                    [min(940)]: { fontSize: rem(10) },
+                    fontSize: rem(10),
                   }}
                 >
                   Show less{' '}
@@ -601,8 +606,7 @@ const Item = ({
                     display: 'block',
                     paddingTop: rem(16),
                     paddingLeft: 0,
-                    fontSize: rem(8),
-                    [min(940)]: { fontSize: rem(10) },
+                    fontSize: rem(10),
                   }}
                 >
                   Show more{' '}
@@ -646,6 +650,15 @@ const Item = ({
                   {matches =>
                     matches ? (
                       <ZoomImg img={{ ...img, msrc: img.src }} />
+                    ) : on ? (
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        css={{
+                          width: '100%',
+                          borderBottom: 'solid 1px #e0ebf1',
+                        }}
+                      />
                     ) : (
                       <div
                         onClick={setOn}
@@ -673,26 +686,51 @@ const Item = ({
                   }
                 </Media>
               ) : (
-                <div
-                  css={{
-                    height: '100%',
-                    position: 'relative',
-                    zIndex: 0,
-                    [min(940)]: {
-                      border: 'solid 1px #e0ebf1',
-                      borderRadius: 5,
-                    },
-                    '::after': {
-                      content: '""',
-                      display: 'block',
-                      width: '100%',
-                      height: 0,
-                      position: 'relative',
-                      zIndex: 1,
-                      paddingBottom: '58%',
-                    },
-                  }}
-                />
+                <Media query="(min-width: 940px)">
+                  {matches =>
+                    on && !matches ? (
+                      <div css={{ height: 30 }} />
+                    ) : (
+                      <div
+                        onClick={setOn}
+                        css={{
+                          height: '100%',
+                          position: 'relative',
+                          zIndex: 0,
+                          backgroundColor: '#f6f6f6',
+                          [min(940)]: {
+                            backgroundColor: 'transparent',
+                            border: 'solid 1px #e0ebf1',
+                            borderRadius: 5,
+                          },
+                          '::before': {
+                            content: '"- No media -"',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: '100%',
+                            height: '100%',
+                            position: 'absolute',
+                            color: colors.text.blue.light,
+                            fontWeight: 900,
+                            fontSize: rem(10),
+                            textTransform: 'uppercase',
+                            letterSpacing: rem(4),
+                          },
+                          '::after': {
+                            content: '""',
+                            display: 'block',
+                            width: '100%',
+                            height: 0,
+                            position: 'relative',
+                            zIndex: 1,
+                            paddingBottom: '58%',
+                          },
+                        }}
+                      />
+                    )
+                  }
+                </Media>
               )}
               {on &&
                 (senderName || senderTwitter) && (
@@ -764,7 +802,7 @@ const IndexPage = () => (
           css={{
             marginTop: rem(13),
             marginBottom: rem(13),
-            fontWeight: 700,
+            fontWeight: 800,
             fontSize: rem(18),
             lineHeight: 1.2,
             color: colors.text.blue.dark,
@@ -866,7 +904,10 @@ const IndexPage = () => (
         >
           <ul
             css={{
-              '> li:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              backgroundColor: '#D6E3E9',
+              '> li:first-child': { marginTop: '0 !important' },
+              '> li:last-child': { marginBottom: '0 !important' },
+              '> li:not(:last-child)': { marginBottom: 1 },
               [min(940)]: {
                 boxShadow: '0 5px 25px #CFDEE5',
                 borderRadius: 8,
@@ -968,7 +1009,10 @@ const IndexPage = () => (
         >
           <ul
             css={{
-              '> li:not(:last-child)': { borderBottom: '1px solid #D6E3E9' },
+              backgroundColor: '#D6E3E9',
+              '> li:first-child': { marginTop: '0 !important' },
+              '> li:last-child': { marginBottom: '0 !important' },
+              '> li:not(:last-child)': { marginBottom: 1 },
               [min(940)]: {
                 boxShadow: '0 5px 25px #CFDEE5',
                 borderRadius: 8,
