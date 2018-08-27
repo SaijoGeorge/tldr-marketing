@@ -645,7 +645,7 @@ const Item = ({
                 <Media query="(min-width: 940px)">
                   {matches =>
                     matches ? (
-                      <ZoomImg img={img} />
+                      <ZoomImg img={{ ...img, msrc: img.src }} />
                     ) : (
                       <div
                         onClick={setOn}
