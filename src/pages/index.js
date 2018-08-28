@@ -786,8 +786,8 @@ const IndexPage = () => (
           src={avatar}
           alt="Saijo George"
           css={{
-            width: rem(42),
-            height: rem(42),
+            width: rem(45),
+            height: rem(45),
             borderRadius: '50%',
             filter: 'grayscale(1)',
             transformOrigin: 'left bottom',

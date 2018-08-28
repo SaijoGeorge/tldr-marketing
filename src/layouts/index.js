@@ -233,7 +233,7 @@ const Layout = ({ children, data }) => (
               },
             }}
           >
-            <Link
+            {/* <Link
               to="/"
               css={{
                 display: 'flex',
@@ -295,6 +295,22 @@ const Layout = ({ children, data }) => (
               >
                 tl;dr<br />marketing
               </span>
+            </Link> */}
+            <Link
+              to="/"
+              css={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '80%',
+                fontWeight: 800,
+                fontSize: 20,
+                lineHeight: 1,
+                color: colors.text.blue.dark,
+                background: 'rgba(239, 245, 248, 0.9)',
+                boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
+              }}
+            >
+              tl;dr<br />marketing
             </Link>
             <ul css={{ display: 'flex', [min(940)]: { display: 'none' } }}>
               <li>
