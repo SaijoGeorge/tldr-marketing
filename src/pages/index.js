@@ -66,6 +66,21 @@ const links = [
       h: 306,
     },
     description: `It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.`,
+    category: 'sponsored',
+    senderName: 'Saijo George',
+    senderTwitter: '@SaijoGeorge',
+  },
+  {
+    title: 'Not Secure Label Is Now Live For HTTP Sites On Chrome',
+    url:
+      'https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html',
+    img: {
+      src: withPrefix('/images/p1.png'),
+      alt: '',
+      w: 705,
+      h: 306,
+    },
+    description: `It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.`,
     category: 'seo',
     senderName: 'Saijo George',
     senderTwitter: '@SaijoGeorge',
@@ -413,7 +428,10 @@ const Item = ({
                 fontSize: rem(12),
                 color: '#fff',
                 whiteSpace: 'nowrap',
-                background: categories[category].color,
+                background:
+                  category === 'sponsored'
+                    ? '#253e5b'
+                    : categories[category].color,
                 borderRadius: '0 0 5px 0',
                 [min(940)]: {
                   padding: `${rem(16)} ${rem(4)}`,
@@ -422,7 +440,9 @@ const Item = ({
                 },
               }}
             >
-              {categories[category].label}
+              {category === 'sponsored'
+                ? 'Sponsored'
+                : categories[category].label}
             </div>
           </div>
           <article
@@ -766,6 +786,26 @@ const Item = ({
   )
 }
 
+const LoadMoreButton = styled('button')({
+  width: '100%',
+  marginTop: -50,
+  marginBottom: 100,
+  padding: 23,
+  fontWeight: 800,
+  fontSize: 19,
+  color: '#B2C7D2',
+  border: 'solid 2px #DAE8F0',
+  [min(940)]: {
+    width: '80%',
+    marginLeft: '20%',
+    borderRadius: 10,
+  },
+  [min(1130)]: {
+    width: '75%',
+    marginLeft: '25%',
+  },
+})
+
 const IndexPage = () => (
   <Fragment>
     <Categories style={{ gridArea: 'Menu' }} />
@@ -1027,6 +1067,7 @@ const IndexPage = () => (
           </ul>
         </div>
       </div>
+      <LoadMoreButton>Loading more links...</LoadMoreButton>
     </div>
   </Fragment>
 )
