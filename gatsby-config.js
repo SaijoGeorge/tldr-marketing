@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '/tldr-marketing',
   siteMetadata: {
     title: '𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘',
   },
