@@ -1,2 +1,0 @@
-webpackJsonp([60335399758886],{98:function(t,e){t.exports={data:{site:{siteMetadata:{title:"SEO News - 𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘"}}},layoutContext:{}}}});
-//# sourceMappingURL=path----6756e0a075618cc6af4c.js.map
