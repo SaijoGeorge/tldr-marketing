@@ -1,18 +1,20 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { Link, withPrefix } from 'gatsby'
 import styled from 'react-emotion'
-import theme from '../styles/theme'
-import Link, { withPrefix } from 'gatsby-link'
 import Toggle from 'react-toggled'
 import parseURL from 'url-parse'
 import ReactMarkdown from 'react-markdown'
 import removeMd from 'remove-markdown'
 import TextTruncate from 'react-text-truncate'
+import Media from 'react-media'
+
+import theme from '../styles/theme'
+import Layout from '../components/layout'
 import WideLink from '../components/WideLink'
 import WideButton from '../components/WideButton'
 import ZoomImg from '../components/ZoomImg'
-import Media from 'react-media'
 
-import avatar from '../assets/saijo-george.png'
+import avatar from '../images/saijo-george.png'
 
 const {
   min,
@@ -484,7 +486,7 @@ const Item = ({
                         {...matches && { onMouseOver, onMouseLeave }}
                         href={externalURL}
                         target="_blank"
-                        rel="noopener"
+                        rel="noopener noreferrer"
                         css={{
                           display: 'block',
                           borderRadius: 2,
@@ -540,7 +542,8 @@ const Item = ({
                 <ReactMarkdown
                   renderers={{
                     link: props => (
-                      <a target="_blank" rel="noopener" {...props} />
+                      // eslint-disable-next-line
+                      <a target="_blank" rel="noopener noreferrer" {...props} />
                     ),
                   }}
                   source={description}
@@ -768,7 +771,7 @@ const Item = ({
                       <a
                         href={`https://twitter.com/${senderTwitter}`}
                         target="_blank"
-                        rel="noindex noopener"
+                        rel="noindex noopener noreferrer"
                         css={{ fontWeight: 800 }}
                       >
                         {senderName || senderTwitter}
@@ -807,269 +810,276 @@ const LoadMoreButton = styled('button')({
 })
 
 const IndexPage = () => (
-  <Fragment>
-    <Categories style={{ gridArea: 'Menu' }} />
-    <div
-      style={{ gridArea: 'Content' }}
-      css={{ [max(940 - 1)]: { display: 'none' } }}
-    >
+  <Layout>
+    <>
+      <Categories style={{ gridArea: 'Menu' }} />
       <div
-        css={{
-          position: 'fixed',
-          zIndex: 4,
-          bottom: space.rem.lg,
-          background: 'rgba(239, 245, 248, 0.9)',
-          boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
-        }}
-      >
-        <img
-          src={avatar}
-          alt="Saijo George"
-          css={{
-            width: rem(45),
-            height: rem(45),
-            borderRadius: '50%',
-            filter: 'grayscale(1)',
-            transformOrigin: 'left bottom',
-            transition: '.3s',
-            '*:hover > &': {
-              transform: 'scale(2)',
-              filter: 'grayscale(0)',
-            },
-          }}
-        />
-        <h4
-          css={{
-            marginTop: rem(13),
-            marginBottom: rem(13),
-            fontWeight: 800,
-            fontSize: rem(18),
-            lineHeight: 1.2,
-            color: colors.text.blue.dark,
-          }}
-        >
-          Created by<br />
-          Saijo George
-        </h4>
-        <WideLink to="/about" css={{ padding: 0 }}>
-          Read more
-        </WideLink>
-      </div>
-    </div>
-    <div style={{ gridArea: 'Content' }}>
-      <div
-        css={{
-          display: 'grid',
-          alignItems: 'start',
-          paddingBottom: rem(50),
-          gridTemplate: `
-            "Sidebar"
-            "Content"
-            / 1fr
-          `,
-          [min(940)]: {
-            paddingBottom: space.rem.xxl,
-            gridTemplate: `
-              "Sidebar Content"
-              / 20% 80%
-            `,
-          },
-          [min(1130)]: {
-            gridTemplate: `
-              "Sidebar Content"
-              / 25% 75%
-            `,
-          },
-          [media.desktop]: {
-            gridTemplate: `
-              "Sidebar Content"
-              / minmax(25%, 1fr) ${rem(1000)}
-            `,
-          },
-        }}
+        style={{ gridArea: 'Content' }}
+        css={{ [max(940 - 1)]: { display: 'none' } }}
       >
         <div
-          style={{ gridArea: 'Sidebar' }}
           css={{
-            position: 'sticky',
-            top: rem(53),
-            zIndex: 2,
-            paddingTop: rem(12),
-            paddingBottom: rem(12),
-            paddingLeft: space.rem.md,
-            [media.mobileLg]: { paddingLeft: rem(24) },
-            color: '#fff',
-            backgroundColor: colors.bg.blue.medium,
-            [min(940)]: {
-              top: rem(150),
-              padding: 0,
-              marginBottom: 0,
-              color: colors.text.blue.dark,
-              backgroundColor: 'initial',
-            },
+            position: 'fixed',
+            zIndex: 4,
+            bottom: space.rem.lg,
+            background: 'rgba(239, 245, 248, 0.9)',
+            boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
           }}
         >
+          <img
+            src={avatar}
+            alt="Saijo George"
+            css={{
+              width: rem(45),
+              height: rem(45),
+              borderRadius: '50%',
+              filter: 'grayscale(1)',
+              transformOrigin: 'left bottom',
+              transition: '.3s',
+              '*:hover > &': {
+                transform: 'scale(2)',
+                filter: 'grayscale(0)',
+              },
+            }}
+          />
           <h4
             css={{
+              marginTop: rem(13),
+              marginBottom: rem(13),
               fontWeight: 800,
-              fontSize: rem(14),
+              fontSize: rem(18),
               lineHeight: 1.2,
-              [min(940)]: {
-                fontWeight: 600,
-                fontSize: rem(24),
-              },
-              [min(1130)]: {
-                fontSize: rem(40),
-              },
+              color: colors.text.blue.dark,
             }}
           >
-            thursday{' '}
-            <span
-              css={{
-                [min(940)]: {
-                  display: 'block',
-                  fontWeight: 700,
-                  fontSize: rem(14),
-                },
-                [min(1130)]: { fontSize: rem(18) },
-              }}
-            >
-              05/24
-            </span>
+            Created by
+            <br />
+            Saijo George
           </h4>
-        </div>
-        <div
-          style={{ gridArea: 'Content' }}
-          css={{ [max(940 - 1)]: { marginTop: rem(10) } }}
-        >
-          <ul
-            css={{
-              backgroundColor: '#D6E3E9',
-              '> li:first-child': { marginTop: '0 !important' },
-              '> li:last-child': { marginBottom: '0 !important' },
-              '> li:not(:last-child)': { marginBottom: 1 },
-              [min(940)]: {
-                boxShadow: '0 5px 25px #CFDEE5',
-                borderRadius: 8,
-                '> li': {
-                  '&:first-child': { borderRadius: '8px 8px 0 0' },
-                  '&:last-child': { borderRadius: '0 0 8px 8px' },
-                },
-              },
-            }}
-          >
-            {links.map((data, i) => <Item key={i} data={data} />)}
-          </ul>
+          <WideLink to="/about" css={{ padding: 0 }}>
+            Read more
+          </WideLink>
         </div>
       </div>
-      <div
-        css={{
-          display: 'grid',
-          alignItems: 'start',
-          paddingBottom: rem(50),
-          gridTemplate: `
-            "Sidebar"
-            "Content"
-            / 1fr
-          `,
-          [min(940)]: {
-            paddingBottom: space.rem.xxl,
-            gridTemplate: `
-              "Sidebar Content"
-              / 20% 80%
-            `,
-          },
-          [min(1130)]: {
-            gridTemplate: `
-              "Sidebar Content"
-              / 25% 75%
-            `,
-          },
-          [media.desktop]: {
-            gridTemplate: `
-              "Sidebar Content"
-              / minmax(25%, 1fr) ${rem(1000)}
-            `,
-          },
-        }}
-      >
+      <div style={{ gridArea: 'Content' }}>
         <div
-          style={{ gridArea: 'Sidebar' }}
           css={{
-            position: 'sticky',
-            top: rem(53),
-            zIndex: 2,
-            paddingTop: rem(12),
-            paddingBottom: rem(12),
-            paddingLeft: space.rem.md,
-            [media.mobileLg]: { paddingLeft: rem(24) },
-            color: '#fff',
-            backgroundColor: colors.bg.blue.medium,
+            display: 'grid',
+            alignItems: 'start',
+            paddingBottom: rem(50),
+            gridTemplate: `
+              "Sidebar"
+              "Content"
+              / 1fr
+            `,
             [min(940)]: {
-              top: rem(150),
-              padding: 0,
-              marginBottom: 0,
-              color: colors.text.blue.dark,
-              backgroundColor: 'initial',
+              paddingBottom: space.rem.xxl,
+              gridTemplate: `
+                "Sidebar Content"
+                / 20% 80%
+              `,
+            },
+            [min(1130)]: {
+              gridTemplate: `
+                "Sidebar Content"
+                / 25% 75%
+              `,
+            },
+            [media.desktop]: {
+              gridTemplate: `
+                "Sidebar Content"
+                / minmax(25%, 1fr) ${rem(1000)}
+              `,
             },
           }}
         >
-          <h4
+          <div
+            style={{ gridArea: 'Sidebar' }}
             css={{
-              fontWeight: 800,
-              fontSize: rem(14),
-              lineHeight: 1.2,
+              position: 'sticky',
+              top: rem(53),
+              zIndex: 2,
+              paddingTop: rem(12),
+              paddingBottom: rem(12),
+              paddingLeft: space.rem.md,
+              [media.mobileLg]: { paddingLeft: rem(24) },
+              color: '#fff',
+              backgroundColor: colors.bg.blue.medium,
               [min(940)]: {
-                fontWeight: 600,
-                fontSize: rem(24),
-              },
-              [min(1130)]: {
-                fontSize: rem(40),
+                top: rem(150),
+                padding: 0,
+                marginBottom: 0,
+                color: colors.text.blue.dark,
+                backgroundColor: 'initial',
               },
             }}
           >
-            firday{' '}
-            <span
+            <h4
               css={{
+                fontWeight: 800,
+                fontSize: rem(14),
+                lineHeight: 1.2,
                 [min(940)]: {
-                  display: 'block',
-                  fontWeight: 700,
-                  fontSize: rem(14),
+                  fontWeight: 600,
+                  fontSize: rem(24),
                 },
-                [min(1130)]: { fontSize: rem(18) },
+                [min(1130)]: {
+                  fontSize: rem(40),
+                },
               }}
             >
-              05/25
-            </span>
-          </h4>
+              thursday{' '}
+              <span
+                css={{
+                  [min(940)]: {
+                    display: 'block',
+                    fontWeight: 700,
+                    fontSize: rem(14),
+                  },
+                  [min(1130)]: { fontSize: rem(18) },
+                }}
+              >
+                05/24
+              </span>
+            </h4>
+          </div>
+          <div
+            style={{ gridArea: 'Content' }}
+            css={{ [max(940 - 1)]: { marginTop: rem(10) } }}
+          >
+            <ul
+              css={{
+                backgroundColor: '#D6E3E9',
+                '> li:first-child': { marginTop: '0 !important' },
+                '> li:last-child': { marginBottom: '0 !important' },
+                '> li:not(:last-child)': { marginBottom: 1 },
+                [min(940)]: {
+                  boxShadow: '0 5px 25px #CFDEE5',
+                  borderRadius: 8,
+                  '> li': {
+                    '&:first-child': { borderRadius: '8px 8px 0 0' },
+                    '&:last-child': { borderRadius: '0 0 8px 8px' },
+                  },
+                },
+              }}
+            >
+              {links.map((data, i) => (
+                <Item key={i} data={data} />
+              ))}
+            </ul>
+          </div>
         </div>
         <div
-          style={{ gridArea: 'Content' }}
-          css={{ [max(940 - 1)]: { marginTop: rem(10) } }}
+          css={{
+            display: 'grid',
+            alignItems: 'start',
+            paddingBottom: rem(50),
+            gridTemplate: `
+              "Sidebar"
+              "Content"
+              / 1fr
+            `,
+            [min(940)]: {
+              paddingBottom: space.rem.xxl,
+              gridTemplate: `
+                "Sidebar Content"
+                / 20% 80%
+              `,
+            },
+            [min(1130)]: {
+              gridTemplate: `
+                "Sidebar Content"
+                / 25% 75%
+              `,
+            },
+            [media.desktop]: {
+              gridTemplate: `
+                "Sidebar Content"
+                / minmax(25%, 1fr) ${rem(1000)}
+              `,
+            },
+          }}
         >
-          <ul
+          <div
+            style={{ gridArea: 'Sidebar' }}
             css={{
-              backgroundColor: '#D6E3E9',
-              '> li:first-child': { marginTop: '0 !important' },
-              '> li:last-child': { marginBottom: '0 !important' },
-              '> li:not(:last-child)': { marginBottom: 1 },
+              position: 'sticky',
+              top: rem(53),
+              zIndex: 2,
+              paddingTop: rem(12),
+              paddingBottom: rem(12),
+              paddingLeft: space.rem.md,
+              [media.mobileLg]: { paddingLeft: rem(24) },
+              color: '#fff',
+              backgroundColor: colors.bg.blue.medium,
               [min(940)]: {
-                boxShadow: '0 5px 25px #CFDEE5',
-                borderRadius: 8,
-                '> li': {
-                  '&:first-child': { borderRadius: '8px 8px 0 0' },
-                  '&:last-child': { borderRadius: '0 0 8px 8px' },
-                },
+                top: rem(150),
+                padding: 0,
+                marginBottom: 0,
+                color: colors.text.blue.dark,
+                backgroundColor: 'initial',
               },
             }}
           >
-            {links.map((data, i) => <Item key={i} data={data} />)}
-          </ul>
+            <h4
+              css={{
+                fontWeight: 800,
+                fontSize: rem(14),
+                lineHeight: 1.2,
+                [min(940)]: {
+                  fontWeight: 600,
+                  fontSize: rem(24),
+                },
+                [min(1130)]: {
+                  fontSize: rem(40),
+                },
+              }}
+            >
+              firday{' '}
+              <span
+                css={{
+                  [min(940)]: {
+                    display: 'block',
+                    fontWeight: 700,
+                    fontSize: rem(14),
+                  },
+                  [min(1130)]: { fontSize: rem(18) },
+                }}
+              >
+                05/25
+              </span>
+            </h4>
+          </div>
+          <div
+            style={{ gridArea: 'Content' }}
+            css={{ [max(940 - 1)]: { marginTop: rem(10) } }}
+          >
+            <ul
+              css={{
+                backgroundColor: '#D6E3E9',
+                '> li:first-child': { marginTop: '0 !important' },
+                '> li:last-child': { marginBottom: '0 !important' },
+                '> li:not(:last-child)': { marginBottom: 1 },
+                [min(940)]: {
+                  boxShadow: '0 5px 25px #CFDEE5',
+                  borderRadius: 8,
+                  '> li': {
+                    '&:first-child': { borderRadius: '8px 8px 0 0' },
+                    '&:last-child': { borderRadius: '0 0 8px 8px' },
+                  },
+                },
+              }}
+            >
+              {links.map((data, i) => (
+                <Item key={i} data={data} />
+              ))}
+            </ul>
+          </div>
         </div>
+        <LoadMoreButton>Loading more links...</LoadMoreButton>
       </div>
-      <LoadMoreButton>Loading more links...</LoadMoreButton>
-    </div>
-  </Fragment>
+    </>
+  </Layout>
 )
 
 export default IndexPage
