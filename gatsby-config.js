@@ -15,16 +15,10 @@ module.exports = {
         background_color: '#EFF5F8',
         theme_color: '#EFF5F8',
         display: 'minimal-ui',
-        // "icons": [
-        //   {
-        //     "src": "src/images/favicon.png",
-        //     "sizes": "512x512",
-        //     "type": "image/png"
-        //   }
-        // ],
+        // "icon": "src/images/favicon.png"
       },
     },
-    'gatsby-plugin-offline',
+    // 'gatsby-plugin-offline',
     // {
     //   resolve: `gatsby-plugin-google-tagmanager`,
     //   options: {

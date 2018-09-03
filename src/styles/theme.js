@@ -1,4 +1,4 @@
-import * as tools from './tools'
+import { em, rem } from './tools'
 
 const breakpoints = {
   mobile: 1,
@@ -23,14 +23,10 @@ const breakpoints = {
   desktopLg: 1920,
 }
 
-const media = Object.entries(breakpoints).reduce((acc, [key, val]) => {
-  acc[key] = `@media (min-width: ${tools.em(val)})`
+export const media = Object.entries(breakpoints).reduce((acc, [key, val]) => {
+  acc[key] = `@media (min-width: ${em(val)})`
   return acc
 }, {})
-
-const min = width => `@media (min-width: ${tools.em(width)})`
-
-const max = width => `@media (max-width: ${tools.em(width)})`
 
 const spaceValues = {
   xxs: 2,
@@ -44,18 +40,18 @@ const spaceValues = {
 
 const spaceValuesInRems = Object.entries(spaceValues).reduce(
   (acc, [key, val]) => {
-    acc[key] = tools.rem(val)
+    acc[key] = rem(val)
     return acc
   },
   {}
 )
 
-const space = {
+export const space = {
   ...spaceValues,
   rem: spaceValuesInRems,
 }
 
-const colors = {
+export const colors = {
   text: {
     blue: {
       light: '#B1BFC6',
@@ -70,14 +66,4 @@ const colors = {
       dark: '#263E5B',
     },
   },
-}
-
-export default {
-  tools,
-  breakpoints,
-  media,
-  min,
-  max,
-  space,
-  colors,
 }

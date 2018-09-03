@@ -1,11 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PhotoSwipe from 'photoswipe'
 import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
-import theme from '../styles/theme'
 
-const { min } = theme
+import { min } from '../styles/tools'
 
 class ZoomImg extends Component {
   initGallery = () => {
@@ -43,7 +42,7 @@ class ZoomImg extends Component {
     } = this.props
 
     return (
-      <Fragment>
+      <>
         <div
           ref={ref => (this.thumbnail = ref)}
           onClick={this.initGallery}
@@ -68,10 +67,6 @@ class ZoomImg extends Component {
               position: 'relative',
               zIndex: 1,
               paddingBottom: '58%',
-              // borderRadius: 'inherit',
-              // backgroundColor: '#CCE0EA',
-              // transition: '.5s',
-              // mixBlendMode: 'color',
             },
             ':hover': {
               cursor: 'zoom-in',
@@ -129,7 +124,7 @@ class ZoomImg extends Component {
             </div>
           </div>
         </div>
-      </Fragment>
+      </>
     )
   }
 }
