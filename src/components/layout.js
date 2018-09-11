@@ -155,7 +155,7 @@ const Layout = ({ children }) => (
           />
           <meta name="yandex-verification" content="00fa43a53556943b" />
           <link
-            href="https://fonts.googleapis.com/css?family=Nunito+Sans|Nunito:400,700,800,900"
+            href="https://fonts.googleapis.com/css?family=Nunito:400,700,800,900"
             rel="stylesheet"
           />
           <link rel="canonical" href="https://tldrmarketing.com" />

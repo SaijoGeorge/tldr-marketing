@@ -72,7 +72,7 @@ const PostFigure = styled.div(({ isOpen }) => ({
       height: '1px',
       position: 'absolute',
       bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, .1)',
+      backgroundColor: 'rgba(0, 0, 0, .07)',
     },
   },
   [media._sm]: {

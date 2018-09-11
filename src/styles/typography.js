@@ -20,7 +20,7 @@ export const markdownStyles = {
   },
   li: {
     listStyle: 'disc',
-    marginLeft: rem(36),
+    marginLeft: rem(19),
   },
   a: {
     color: colors.text.blue.medium,

@@ -47,18 +47,18 @@ export const InnerLayout = styled.div({
   },
   [media._md]: {
     gridTemplate: `
-      ". ." ${space.lg}
+      ". ." ${rem(35)}
       "InnerLayoutNavbar InnerLayoutMenu" auto
-      ". ." ${space.lg}
+      ". ." ${rem(35)}
       "InnerLayoutContent InnerLayoutContent" 1fr
       / 25% 75%
     `,
   },
   [media.desktop]: {
     gridTemplate: `
-      ". ." ${space.lg}
+      ". ." ${rem(35)}
       "InnerLayoutNavbar InnerLayoutMenu" auto
-      ". ." ${space.lg}
+      ". ." ${rem(35)}
       "InnerLayoutContent InnerLayoutContent" 1fr
       / 25% ${rem(1000)}
     `,
