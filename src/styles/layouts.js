@@ -30,16 +30,16 @@ export const InnerLayout = styled.div({
   display: 'grid',
   gridTemplate: `
     "." ${rem(22)}
-    "InnerLayoutNavbar" auto
+    "InnerLayoutHeader" auto
     "." ${rem(22)}
-    "InnerLayoutMenu" auto
+    "InnerLayoutNavbar" auto
     "InnerLayoutContent" 1fr
     / 1fr
   `,
   [media._sm]: {
     gridTemplate: `
       ". ." ${space.lg}
-      "InnerLayoutNavbar InnerLayoutMenu" auto
+      "InnerLayoutHeader InnerLayoutNavbar" auto
       ". ." ${space.lg}
       "InnerLayoutContent InnerLayoutContent" 1fr
       / 20% 80%
@@ -47,18 +47,18 @@ export const InnerLayout = styled.div({
   },
   [media._md]: {
     gridTemplate: `
-      ". ." ${rem(35)}
-      "InnerLayoutNavbar InnerLayoutMenu" auto
-      ". ." ${rem(35)}
+      ". ." ${rem(32)}
+      "InnerLayoutHeader InnerLayoutNavbar" auto
+      ". ." ${rem(34)}
       "InnerLayoutContent InnerLayoutContent" 1fr
       / 25% 75%
     `,
   },
   [media.desktop]: {
     gridTemplate: `
-      ". ." ${rem(35)}
-      "InnerLayoutNavbar InnerLayoutMenu" auto
-      ". ." ${rem(35)}
+      ". ." ${rem(32)}
+      "InnerLayoutHeader InnerLayoutNavbar" auto
+      ". ." ${rem(34)}
       "InnerLayoutContent InnerLayoutContent" 1fr
       / 25% ${rem(1000)}
     `,

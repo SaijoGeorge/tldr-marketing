@@ -2,6 +2,7 @@ import { withPrefix } from 'gatsby'
 
 const links = [
   {
+    slug: 'post-01',
     title: 'Not Secure Label Is Now Live For HTTP Sites On Chrome',
     url:
       'https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html',
@@ -17,6 +18,7 @@ const links = [
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-02',
     title: 'Not Secure Label Is Now Live For HTTP Sites On Chrome',
     url:
       'https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html',
@@ -32,6 +34,7 @@ const links = [
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-03',
     title:
       'Mark Up Sections Of A News Article To Be Read Aloud By The Google Assistant',
     url:
@@ -48,6 +51,7 @@ const links = [
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-04',
     title: 'Google Tests New Design For Image Search Results',
     url:
       'https://www.searchenginejournal.com/google-tests-new-design-for-image-search-results/262641/',
@@ -65,6 +69,7 @@ It does not show up for me, so this could be a limited test or a gradual rollout
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-05',
     title: 'Google Tests Price Insights For Hotel Listings',
     url: 'https://alakov.com/blog/price-insights-test',
     img: {
@@ -90,6 +95,7 @@ It does not show up for me, so this could be a limited test or a gradual rollout
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-06',
     title: "GMB Dashboard Starts Showing Competitor's Google Posts",
     url: 'https://twitter.com/brodieseo/status/1021545487558537218',
     img: {
@@ -105,6 +111,7 @@ Looks like Google really wants you to add more things through Google Posts and t
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-07',
     title: 'Alphabet Q2 Reported At 32.7 Billion Up 26% YoY',
     url: 'https://www.cnbc.com/2018/07/23/alphabet-earnings-q2-2018.html',
     img: {
@@ -122,6 +129,7 @@ Despite the fine imposed by the EU, things are looking good for Google. The Q2 2
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-08',
     title: 'Pinterest Nears 1 Billion In Ad Sales',
     url:
       'http://www.thesempost.com/google-search-quality-rater-guidelines-updated/',
@@ -135,6 +143,7 @@ Reaching $1 billion in revenue will mark a significant milestone, but it's way b
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-09',
     title:
       'Google Seems To Have Hijacked The Search Box For TheFreeDictionary.com',
     url:
@@ -153,6 +162,7 @@ They also show Google's dictionary widget at  position zero for the query [free 
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-10',
     title: 'IAB Survey Finds Podcast Ad Revenue Is Growing Fast',
     url: 'https://www.searchenginejournal.com/podcast-ad-revenues/262655/',
     img: {
@@ -168,6 +178,7 @@ A new report indicates that podcasting revenues are a fast growing areas of digi
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-11',
     title:
       'YouTube Tests An Explore Tab To Help Users Discover Videos Based On Viewing Activity',
     url:
@@ -186,6 +197,7 @@ Those who have been selected for the test group will notice that the Explore tab
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-12',
     title: 'Amazon Sponsored Products Could Be Coming To A Website Near You',
     url:
       'http://adage.com/article/digital/amazon-tests-ground-product-ads/314321/',
@@ -198,6 +210,7 @@ Amazon is talking with top agencies and brands about participating in a test tha
     senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
+    slug: 'post-13',
     title: 'Declines In Pay TV Subscriptions Have Exceeded Previous Estimates',
     url:
       'https://www.recode.net/2018/7/24/17604218/partnering-with-netflix-and-hulu-hasnt-stopped-pay-tv-providers-from-losing-customers',

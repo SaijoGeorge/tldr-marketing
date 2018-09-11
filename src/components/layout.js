@@ -92,13 +92,14 @@ const RightBar = props => (
   </Bar>
 )
 
-const Navbar = props => (
-  <div
+const Header = props => (
+  <header
     css={{
       display: 'flex',
       paddingLeft: space.md,
       [media.mobileLg]: { paddingLeft: rem(24) },
       [media._sm]: {
+        height: rem(70),
         position: 'sticky',
         zIndex: 4,
         top: space.lg,
@@ -120,7 +121,7 @@ const Navbar = props => (
         <WideLink to="/about">About</WideLink>
       </li>
     </ul>
-  </div>
+  </header>
 )
 
 const Layout = ({ children }) => (
@@ -192,7 +193,7 @@ const Layout = ({ children }) => (
         <OuterLayout>
           <LeftBar style={{ gridArea: 'OuterLayoutLeftBar' }} />
           <InnerLayout style={{ gridArea: 'OuterLayoutContent' }}>
-            <Navbar style={{ gridArea: 'InnerLayoutNavbar' }} />
+            <Header style={{ gridArea: 'InnerLayoutHeader' }} />
             {children}
           </InnerLayout>
           <RightBar style={{ gridArea: 'OuterLayoutRightBar' }} />

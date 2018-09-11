@@ -41,6 +41,9 @@ const PostList = styled.div({
       '&:first-child': { borderRadius: '8px 8px 0 0' },
       '&:last-child': { borderRadius: '0 0 8px 8px' },
     },
+    '> :only-child': {
+      borderRadius: '8px',
+    },
   },
 })
 

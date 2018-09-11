@@ -28,7 +28,10 @@ export const markdownStyles = {
   },
 }
 
-export const Paragraph = styled.p(paragraphStyles)
+export const Paragraph = styled.p(
+  paragraphStyles,
+  ({ size }) => size === 'lg' && { fontSize: rem(48) }
+)
 
 export const Strong = styled.strong({ fontWeight: 800 })
 
@@ -83,9 +86,9 @@ export const WideLink = styled(WideText)({
   },
 }).withComponent(Link)
 
-export const CategoryLink = styled(Link)(
+export const CategoryLabel = styled.div(
   {
-    display: 'flex',
+    display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
     padding: `${rem(7)} ${rem(14)}`,
@@ -110,8 +113,10 @@ export const CategoryLink = styled(Link)(
       transition: 'inherit',
     },
   },
-  ({ hoverColor }) => ({ '::before': { background: hoverColor } })
+  ({ color }) => ({ '::before': { background: color } })
 )
+
+export const CategoryLink = CategoryLabel.withComponent(Link)
 
 export const DayDate = styled.span({
   fontWeight: 800,
@@ -189,3 +194,16 @@ export const PostSender = styled.div({
   fontSize: rem(13),
   color: colors.text.blue.light,
 })
+
+export const NavbarText = styled.span({
+  display: 'flex',
+  alignItems: 'center',
+  lineHeight: 1,
+  fontWeight: 800,
+  fontSize: rem(14),
+  [media._sm]: {
+    fontSize: rem(16),
+  },
+})
+
+export const NavbarLink = NavbarText.withComponent(Link)

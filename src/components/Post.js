@@ -22,7 +22,7 @@ import { media, space, colors } from '../styles/theme'
 import { rem } from '../styles/tools'
 import categories from '../categories'
 
-const PostLayout = styled.div(({ isOpen }) => ({
+const PostLayout = styled.div(({ isOpen, isDefaultOpen }) => ({
   display: 'flex',
   alignItems: 'center',
   flexWrap: isOpen ? 'wrap' : 'nowrap',
@@ -31,7 +31,7 @@ const PostLayout = styled.div(({ isOpen }) => ({
   [media._sm]: {
     flexWrap: 'nowrap',
     padding: rem(20),
-    paddingBottom: 0,
+    paddingBottom: !isDefaultOpen && 0,
   },
   [media.max._sm]: {
     ...(isOpen && {
@@ -42,14 +42,14 @@ const PostLayout = styled.div(({ isOpen }) => ({
   },
 }))
 
-const PostContent = styled.div(({ isOpen }) => ({
+const PostContent = styled.div(({ isOpen, isDefaultOpen }) => ({
   flexBasis: isOpen ? '100%' : '62%',
   order: isOpen ? 2 : 1,
   padding: space.md,
-  paddingBottom: space.sm,
+  paddingBottom: !isDefaultOpen && space.sm,
   [media.mobileLg]: {
     padding: rem(24),
-    paddingBottom: rem(12),
+    paddingBottom: !isDefaultOpen && rem(12),
   },
   [media._sm]: {
     flexBasis: '65%',
@@ -253,7 +253,17 @@ const Arrow = ({ direction = 'bottom' }) => (
 )
 
 const Post = ({
-  data: { title, url, img, senderName, senderURL, description, category },
+  data: {
+    slug,
+    title,
+    url,
+    img,
+    senderName,
+    senderURL,
+    description,
+    category,
+    isDefaultOpen,
+  },
   ...rest
 }) => {
   const { hostname, pathname, query, hash } = parseURL(url)
@@ -282,18 +292,18 @@ const Post = ({
   )
 
   return (
-    <Toggle>
+    <Toggle defaultOn={isDefaultOpen}>
       {({ on: isOpen, setOn: open, setOff: close }) => (
         <Media query={media.query._sm}>
           {isDesktop => (
-            <PostLayout isOpen={isOpen} {...rest}>
+            <PostLayout isOpen={isOpen} isDefaultOpen={isDefaultOpen} {...rest}>
               {(isDesktop || (!isDesktop && !isOpen)) && (
                 <PostCategoryLabel isOpen={isOpen} color={categoryColor}>
                   {categoryLabel}
                 </PostCategoryLabel>
               )}
 
-              <PostContent isOpen={isOpen}>
+              <PostContent isOpen={isOpen} isDefaultOpen={isDefaultOpen}>
                 <Toggle>
                   {({
                     on: showFullURL,
@@ -331,41 +341,40 @@ const Post = ({
                 )}
 
                 <div css={{ display: 'flex' }}>
-                  {isOpen && (
-                    <WideButton
-                      onClick={close}
-                      css={{
-                        flex: 1,
-                        paddingTop: rem(24),
-                        paddingLeft: 0,
-                        textAlign: 'left',
-                        cursor: 'pointer',
-                        outline: 'none',
-                        fontSize: rem(10),
-                      }}
-                    >
-                      Show less <Arrow direction="top" />
-                    </WideButton>
-                  )}
-
-                  {!isOpen && (
-                    <WideLink
-                      to={`/links/abc123`}
-                      rel="nofollow"
-                      onClick={e => {
-                        e.preventDefault()
-                        open()
-                      }}
-                      css={{
-                        flex: 1,
-                        paddingTop: rem(24),
-                        paddingLeft: 0,
-                        fontSize: rem(10),
-                      }}
-                    >
-                      Show more <Arrow direction="bottom" />
-                    </WideLink>
-                  )}
+                  {!isDefaultOpen &&
+                    (isOpen ? (
+                      <WideButton
+                        onClick={close}
+                        css={{
+                          flex: 1,
+                          paddingTop: rem(24),
+                          paddingLeft: 0,
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          outline: 'none',
+                          fontSize: rem(10),
+                        }}
+                      >
+                        Show less <Arrow direction="top" />
+                      </WideButton>
+                    ) : (
+                      <WideLink
+                        to={`/posts/${slug}`}
+                        rel="nofollow"
+                        onClick={e => {
+                          e.preventDefault()
+                          open()
+                        }}
+                        css={{
+                          flex: 1,
+                          paddingTop: rem(24),
+                          paddingLeft: 0,
+                          fontSize: rem(10),
+                        }}
+                      >
+                        Show more <Arrow direction="bottom" />
+                      </WideLink>
+                    ))}
 
                   {isOpen &&
                     showSender && (
