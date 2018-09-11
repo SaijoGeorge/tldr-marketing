@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import PhotoSwipe from 'photoswipe'
+import { injectGlobal } from 'emotion'
 import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
 import 'photoswipe/dist/photoswipe.css'
 import 'photoswipe/dist/default-skin/default-skin.css'
 
-import { min } from '../styles/tools'
+injectGlobal({
+  '.pswp__top-bar': {
+    background: 'none !important',
+  },
+})
 
-class ZoomImg extends Component {
+class ZoomableImg extends Component {
   initGallery = () => {
     const items = [this.props.img]
     const options = {
@@ -20,7 +25,7 @@ class ZoomImg extends Component {
       getThumbBoundsFn: () => {
         const pageYScroll =
           window.pageYOffset || document.documentElement.scrollTop
-        const rect = this.thumbnail.getBoundingClientRect()
+        const rect = this.thumb.getBoundingClientRect()
 
         return { x: rect.left, y: rect.top + pageYScroll, w: rect.width }
       },
@@ -35,48 +40,19 @@ class ZoomImg extends Component {
     this.gallery.init()
   }
 
-  render() {
-    const {
-      img: { src, alt },
-      ...rest
-    } = this.props
+  getOpenerProps = ({ onClick = () => {} } = {}) => ({
+    ref: ref => (this.thumb = ref),
+    onClick: () => {
+      onClick()
+      this.initGallery()
+    },
+  })
 
+  render() {
     return (
       <>
-        <div
-          ref={ref => (this.thumbnail = ref)}
-          onClick={this.initGallery}
-          role="img"
-          aria-label={alt}
-          css={{
-            height: '100%',
-            position: 'relative',
-            zIndex: 0,
-            backgroundImage: `url(${src})`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            [min(940)]: {
-              border: 'solid 1px #e0ebf1',
-              borderRadius: 5,
-            },
-            '::after': {
-              content: '""',
-              display: 'block',
-              width: '100%',
-              height: 0,
-              position: 'relative',
-              zIndex: 1,
-              paddingBottom: '58%',
-            },
-            ':hover': {
-              cursor: 'zoom-in',
-              '::after': {
-                opacity: 0,
-              },
-            },
-          }}
-          {...rest}
-        />
+        {this.props.children({ getOpenerProps: this.getOpenerProps })}
+
         <div
           ref={ref => (this.pswpElement = ref)}
           className="pswp"
@@ -98,10 +74,6 @@ class ZoomImg extends Component {
                   title="Close (Esc)"
                 />
                 <button
-                  className="pswp__button pswp__button--fs"
-                  title="Toggle fullscreen"
-                />
-                <button
                   className="pswp__button pswp__button--zoom"
                   title="Zoom in/out"
                 />
@@ -113,14 +85,6 @@ class ZoomImg extends Component {
                   </div>
                 </div>
               </div>
-              <button
-                className="pswp__button pswp__button--arrow--left"
-                title="Previous (arrow left)"
-              />
-              <button
-                className="pswp__button pswp__button--arrow--right"
-                title="Next (arrow right)"
-              />
             </div>
           </div>
         </div>
@@ -129,4 +93,4 @@ class ZoomImg extends Component {
   }
 }
 
-export default ZoomImg
+export default ZoomableImg

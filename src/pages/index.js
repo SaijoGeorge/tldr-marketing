@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import Categories from '../components/Categories'
 import Author from '../components/Author'
 import Day from '../components/Day'
-import LoadingBar from '../components/LoadingBar'
+import StyledLoadingBar from '../components/StyledLoadingBar'
 
 import posts from '../posts'
 
@@ -15,7 +15,7 @@ const IndexPage = () => (
       <Author />
       <Day date={{ day: 'tuesday', date: '09/04' }} posts={posts} />
       <Day date={{ day: 'monday', date: '09/03' }} posts={posts} />
-      <LoadingBar>Loading...</LoadingBar>
+      <StyledLoadingBar>Loading...</StyledLoadingBar>
     </main>
   </Layout>
 )

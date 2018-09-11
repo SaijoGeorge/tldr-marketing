@@ -1,18 +1,20 @@
 import React from 'react'
-import { space } from '../styles/theme'
-import { max, rem } from '../styles/tools'
 
-import avatar from '../images/saijo-george.png'
 import { MediumHeading, WideLink } from '../styles/typography'
+
+import { space, media } from '../styles/theme'
+import { rem } from '../styles/tools'
+import avatar from '../images/saijo-george.png'
+
 const MediumHeading4 = MediumHeading.withComponent('h4')
 
 const Author = props => (
   <div
     css={{
-      [max(940 - 1)]: { display: 'none' },
+      [media.max._sm]: { display: 'none' },
       position: 'fixed',
       zIndex: 4,
-      bottom: space.rem.lg,
+      bottom: space.lg,
       background: 'rgba(239, 245, 248, 0.9)',
       boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
     }}

@@ -23,10 +23,6 @@ const categories = {
     color: '#E0697D',
     label: 'Tips & Tricks',
   },
-  // interview: {
-  //   color: '#000000',
-  //   label: 'Interview',
-  // },
 }
 
 export default categories

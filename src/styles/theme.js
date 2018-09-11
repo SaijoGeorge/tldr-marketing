@@ -1,6 +1,6 @@
-import { em, rem } from './tools'
+import { mediaGetters, spaceGetters } from './tools'
 
-const breakpoints = {
+export const media = mediaGetters({
   mobile: 1,
   tablet: 600,
   laptop: 1024,
@@ -21,14 +21,12 @@ const breakpoints = {
   desktopSm: 1600,
   desktopMd: 1700,
   desktopLg: 1920,
-}
 
-export const media = Object.entries(breakpoints).reduce((acc, [key, val]) => {
-  acc[key] = `@media (min-width: ${em(val)})`
-  return acc
-}, {})
+  _sm: 960,
+  _md: 1130,
+})
 
-const spaceValues = {
+export const space = spaceGetters({
   xxs: 2,
   xs: 4,
   sm: 8,
@@ -36,34 +34,40 @@ const spaceValues = {
   lg: 32,
   xl: 64,
   xxl: 128,
-}
-
-const spaceValuesInRems = Object.entries(spaceValues).reduce(
-  (acc, [key, val]) => {
-    acc[key] = rem(val)
-    return acc
-  },
-  {}
-)
-
-export const space = {
-  ...spaceValues,
-  rem: spaceValuesInRems,
-}
+})
 
 export const colors = {
   text: {
+    grey: {
+      heading: '#333',
+      body: '#777',
+    },
     blue: {
       light: '#B1BFC6',
+      medium: '#3186b1',
       dark: '#263E5B',
     },
   },
   bg: {
+    grey: {
+      lightest: '#f6f6f6',
+    },
     blue: {
       light: '#EFF5F8',
-      normal: '#CCE0EA',
+      normal: '#D6E3E9',
       medium: '#89ADDB',
       dark: '#263E5B',
+    },
+  },
+  border: {
+    blue: {
+      light: '#e0ebf1',
+      normal: '#add2e4',
+    },
+  },
+  shadow: {
+    blue: {
+      light: '#CFDEE5',
     },
   },
 }

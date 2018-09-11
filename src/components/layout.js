@@ -3,95 +3,34 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'react-emotion'
 
-import { Logo, WideText, WideLink } from '../styles/typography'
 import SocialIcon from './SocialIcon'
+import ExternalLink from './ExternalLink'
+import { OuterLayout, InnerLayout } from '../styles/layouts'
+import { Logo, WideText, WideLink } from '../styles/typography'
 
 import '../styles/global'
 import { media, space, colors } from '../styles/theme'
-import { min, max, rem } from '../styles/tools'
+import { rem } from '../styles/tools'
 
-const OuterLayout = styled.div({
-  display: 'grid',
-  height: '100vh',
-  overflowY: 'auto',
-  WebkitOverflowScrolling: 'touch',
-  gridTemplate: `
-    "OuterLayoutContent"
-    / 1fr
-  `,
-  [min(940)]: {
-    gridTemplate: `
-      "OuterLayoutLeftBar . OuterLayoutContent ."
-      / ${rem(50)} 2.5% calc(92.5% - ${rem(50)}) 5%
-    `,
-  },
-  [min(1130)]: {
-    gridTemplate: `
-      "OuterLayoutLeftBar . OuterLayoutContent . OuterLayoutRightBar"
-      / ${rem(80)} 2.5% calc(94% - ${rem(160)}) 3.5% ${rem(80)}
-    `,
-  },
-})
-
-const InnerLayout = styled.div({
-  display: 'grid',
-  gridTemplate: `
-    "." ${rem(22)}
-    "InnerLayoutNavbar" auto
-    "." ${rem(22)}
-    "InnerLayoutMenu" auto
-    "InnerLayoutContent" 1fr
-    / 1fr
-  `,
-  [min(940)]: {
-    gridTemplate: `
-      ". ." ${space.rem.lg}
-      "InnerLayoutNavbar InnerLayoutMenu" auto
-      ". ." ${space.rem.lg}
-      "InnerLayoutContent InnerLayoutContent" 1fr
-      / 20% 80%
-    `,
-  },
-  [min(1130)]: {
-    gridTemplate: `
-      ". ." ${space.rem.lg}
-      "InnerLayoutNavbar InnerLayoutMenu" auto
-      ". ." ${space.rem.lg}
-      "InnerLayoutContent InnerLayoutContent" 1fr
-      / 25% 75%
-    `,
-  },
-  [media.desktop]: {
-    gridTemplate: `
-      ". ." ${space.rem.lg}
-      "InnerLayoutNavbar InnerLayoutMenu" auto
-      ". ." ${space.rem.lg}
-      "InnerLayoutContent InnerLayoutContent" 1fr
-      / 25% ${rem(1000)}
-    `,
-  },
-})
-
-const StyledBar = styled.div({
+const Bar = styled.div({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   height: '100vh',
   position: 'sticky',
   top: 0,
-  color: colors.text.blue.dark,
-  padding: `${space.rem.md} ${space.rem.lg}`,
+  padding: `${space.md} ${space.lg}`,
 })
 
-const SocialIconsBlock = props => (
+const SocialIcons = props => (
   <ul
     css={{
-      margin: `${rem(space.md - space.xs)} 0`,
+      margin: `${rem(space.px.md - space.px.xs)} 0`,
       'a, svg': {
         display: 'block',
       },
       a: {
-        padding: `${space.rem.xs} 0`,
+        padding: `${space.xs} 0`,
         color: colors.text.blue.light,
         borderRadius: '50%',
         transform: 'rotate(-90deg)',
@@ -105,31 +44,19 @@ const SocialIconsBlock = props => (
     {...props}
   >
     <li>
-      <a
-        href="http://linkedin.com/in/saijogeorge"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <ExternalLink href="http://linkedin.com/in/saijogeorge">
         <SocialIcon icon="linkedIn" />
-      </a>
+      </ExternalLink>
     </li>
     <li>
-      <a
-        href="http://facebook.com/saijogeorge"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <ExternalLink href="http://facebook.com/saijogeorge">
         <SocialIcon icon="facebook" />
-      </a>
+      </ExternalLink>
     </li>
     <li>
-      <a
-        href="http://twitter.com/saijogeorge"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <ExternalLink href="http://twitter.com/saijogeorge">
         <SocialIcon icon="twitter" />
-      </a>
+      </ExternalLink>
     </li>
     <li>
       <a href="mailto:contact@tldrmarketing.com">
@@ -139,8 +66,8 @@ const SocialIconsBlock = props => (
   </ul>
 )
 
-const LeftBarBlock = props => (
-  <StyledBar css={{ [max(940 - 1)]: { display: 'none' } }} {...props}>
+const LeftBar = props => (
+  <Bar css={{ [media.max._sm]: { display: 'none' } }} {...props}>
     <WideLink verticalUp to="/about">
       about
     </WideLink>
@@ -150,31 +77,31 @@ const LeftBarBlock = props => (
     <WideText verticalUp css={{ marginTop: 'auto' }}>
       share
     </WideText>
-    <SocialIconsBlock />
-  </StyledBar>
+    <SocialIcons />
+  </Bar>
 )
 
-const RightBarBlock = props => (
-  <StyledBar css={{ [max(1130 - 1)]: { display: 'none' } }} {...props}>
+const RightBar = props => (
+  <Bar css={{ [media.max._md]: { display: 'none' } }} {...props}>
     <WideLink to="newsletter" verticalDown>
       sign up for newsletter
     </WideLink>
     <WideText verticalDown css={{ marginTop: 'auto' }}>
       ©2018
     </WideText>
-  </StyledBar>
+  </Bar>
 )
 
-const NavbarBlock = props => (
+const Navbar = props => (
   <div
     css={{
       display: 'flex',
-      paddingLeft: space.rem.md,
+      paddingLeft: space.md,
       [media.mobileLg]: { paddingLeft: rem(24) },
-      [min(940)]: {
+      [media._sm]: {
         position: 'sticky',
         zIndex: 4,
-        top: space.rem.lg,
+        top: space.lg,
         paddingLeft: 0,
       },
     }}
@@ -185,7 +112,7 @@ const NavbarBlock = props => (
       <br />
       marketing
     </Logo>
-    <ul css={{ display: 'flex', [min(940)]: { display: 'none' } }}>
+    <ul css={{ display: 'flex', [media._sm]: { display: 'none' } }}>
       <li>
         <WideLink to="/sponsored">Sponsored</WideLink>
       </li>
@@ -217,7 +144,7 @@ const Layout = ({ children }) => (
             content="Don't have the time to keep on top of all the changes influencing digital marketing? Get an 📧 with links to stories that impact Organic, Paid & Social Media Marketing news."
           />
           <meta name="author" content="Saijo George" />
-          <meta name="theme-color" content="#EFF5F8" />
+          <meta name="theme-color" content={colors.bg.blue.light} />
           <meta
             name="google-site-verification"
             content="80K9pINH7T-5zO28ITfloeGP_rcF6EH8zPlv24NtKaE"
@@ -263,12 +190,12 @@ const Layout = ({ children }) => (
         </Helmet>
 
         <OuterLayout>
-          <LeftBarBlock style={{ gridArea: 'OuterLayoutLeftBar' }} />
+          <LeftBar style={{ gridArea: 'OuterLayoutLeftBar' }} />
           <InnerLayout style={{ gridArea: 'OuterLayoutContent' }}>
-            <NavbarBlock style={{ gridArea: 'InnerLayoutNavbar' }} />
+            <Navbar style={{ gridArea: 'InnerLayoutNavbar' }} />
             {children}
           </InnerLayout>
-          <RightBarBlock style={{ gridArea: 'OuterLayoutRightBar' }} />
+          <RightBar style={{ gridArea: 'OuterLayoutRightBar' }} />
         </OuterLayout>
       </>
     )}

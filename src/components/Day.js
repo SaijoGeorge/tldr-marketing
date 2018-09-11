@@ -1,91 +1,71 @@
 import React from 'react'
+import styled from 'react-emotion'
+
+import Post from './Post'
+import { ContentLayout } from '../styles/layouts'
+import { DayDate } from '../styles/typography'
 
 import { media, space, colors } from '../styles/theme'
-import { min, rem } from '../styles/tools'
+import { rem } from '../styles/tools'
 
-import ContentLayout from './ContentLayout'
-import Post from './Post'
+const DayDateH4 = DayDate.withComponent('h4')
 
-const Day = ({ date: { day, date }, posts }) => (
+const StickyDate = styled.div({
+  position: 'sticky',
+  top: rem(53),
+  zIndex: 2,
+  paddingTop: rem(12),
+  paddingBottom: rem(12),
+  paddingLeft: space.md,
+  [media.mobileLg]: { paddingLeft: rem(24) },
+  color: 'white',
+  backgroundColor: colors.bg.blue.medium,
+  [media._sm]: {
+    top: rem(150),
+    padding: 0,
+    marginBottom: 0,
+    color: colors.text.blue.dark,
+    backgroundColor: 'initial',
+  },
+})
+
+const PostList = styled.div({
+  backgroundColor: colors.bg.blue.normal,
+  '> *:first-child': { marginTop: '0 !important' },
+  '> *:last-child': { marginBottom: '0 !important' },
+  '> *:not(:last-child)': { marginBottom: '1px' },
+  [media._sm]: {
+    boxShadow: `0 5px 25px ${colors.shadow.blue.light}`,
+    borderRadius: '8px',
+    '> *': {
+      '&:first-child': { borderRadius: '8px 8px 0 0' },
+      '&:last-child': { borderRadius: '0 0 8px 8px' },
+    },
+  },
+})
+
+const Day = ({ date: { day, date }, posts, ...rest }) => (
   <ContentLayout
     css={{
       paddingBottom: rem(50),
-      [min(940)]: {
-        paddingBottom: space.rem.xxl,
+      [media._sm]: {
+        paddingBottom: space.xxl,
       },
     }}
+    {...rest}
   >
-    <div
-      style={{ gridArea: 'ContentLayoutSidebar' }}
-      css={{
-        position: 'sticky',
-        top: rem(53),
-        zIndex: 2,
-        paddingTop: rem(12),
-        paddingBottom: rem(12),
-        paddingLeft: space.rem.md,
-        [media.mobileLg]: { paddingLeft: rem(24) },
-        color: '#fff',
-        backgroundColor: colors.bg.blue.medium,
-        [min(940)]: {
-          top: rem(150),
-          padding: 0,
-          marginBottom: 0,
-          color: colors.text.blue.dark,
-          backgroundColor: 'initial',
-        },
-      }}
-    >
-      <h4
-        css={{
-          fontWeight: 800,
-          fontSize: rem(14),
-          lineHeight: 1.2,
-          [min(940)]: {
-            fontWeight: 600,
-            fontSize: rem(24),
-          },
-          [min(1130)]: {
-            fontSize: rem(40),
-          },
-        }}
-      >
+    <StickyDate style={{ gridArea: 'ContentLayoutSidebar' }}>
+      <DayDateH4>
         {day + ' '}
-        <span
-          css={{
-            [min(940)]: {
-              display: 'block',
-              fontWeight: 700,
-              fontSize: rem(14),
-            },
-            [min(1130)]: { fontSize: rem(18) },
-          }}
-        >
-          {date}
-        </span>
-      </h4>
-    </div>
+        <DayDate.Detail>{date}</DayDate.Detail>
+      </DayDateH4>
+    </StickyDate>
     <div style={{ gridArea: 'ContentLayoutContent' }}>
-      <ul
-        css={{
-          backgroundColor: '#D6E3E9',
-          '> li:first-child': { marginTop: '0 !important' },
-          '> li:last-child': { marginBottom: '0 !important' },
-          '> li:not(:last-child)': { marginBottom: 1 },
-          [min(940)]: {
-            boxShadow: '0 5px 25px #CFDEE5',
-            borderRadius: 8,
-            '> li': {
-              '&:first-child': { borderRadius: '8px 8px 0 0' },
-              '&:last-child': { borderRadius: '0 0 8px 8px' },
-            },
-          },
-        }}
-      >
+      <PostList>
         {posts.map((data, i) => (
           <Post key={i} data={data} />
         ))}
-      </ul>
+      </PostList>
     </div>
   </ContentLayout>
 )

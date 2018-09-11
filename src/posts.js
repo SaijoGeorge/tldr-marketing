@@ -14,7 +14,7 @@ const links = [
     description: `It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.`,
     category: 'sponsored',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'Not Secure Label Is Now Live For HTTP Sites On Chrome',
@@ -29,7 +29,7 @@ const links = [
     description: `It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.`,
     category: 'seo',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title:
@@ -45,7 +45,7 @@ const links = [
     description: `Google has announced a new schema.org structured data specification (still pending) called [speakable](https://pending.schema.org/speakable) for **[eligible publishers](https://developers.google.com/search/docs/data-types/speakable#eligibility)** to mark up sections of a news article that are most relevant to be read aloud by the Google Assistant.The speakable property works on Google Home devices for English-speaking users in the U.S. only.Links : [Technical Details](https://developers.google.com/search/docs/data-types/speakable) & [Submit your Interest](https://services.google.com/fb/forms/speakablenewsinterest/) if you are a Google News Publisher. `,
     category: 'seo',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'Google Tests New Design For Image Search Results',
@@ -62,7 +62,7 @@ Google has been spotted testing a new design for image search results pages. The
 It does not show up for me, so this could be a limited test or a gradual rollout. `,
     category: 'seo',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'Google Tests Price Insights For Hotel Listings',
@@ -87,7 +87,7 @@ It does not show up for me, so this could be a limited test or a gradual rollout
   I image the last few weeks would have been quite stressful if you are an SEO working in the Hotel Industry with all these new changes.`,
     category: 'seo',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: "GMB Dashboard Starts Showing Competitor's Google Posts",
@@ -102,7 +102,7 @@ It does not show up for me, so this could be a limited test or a gradual rollout
 Looks like Google really wants you to add more things through Google Posts and the latest tactic is to show you what you competitors are posting. You can add those in through your [GMB Dashboard](https://business.google.com/locations).`,
     category: 'seo',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'Alphabet Q2 Reported At 32.7 Billion Up 26% YoY',
@@ -119,7 +119,7 @@ Despite the fine imposed by the EU, things are looking good for Google. The Q2 2
 [Report PDF](https://abc.xyz/investor/pdf/2018Q2_alphabet_earnings_release.pdf)`,
     category: 'general',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'Pinterest Nears 1 Billion In Ad Sales',
@@ -132,7 +132,7 @@ Pinterest is having particular success with mobile ads, as the site becomes a mo
 Reaching $1 billion in revenue will mark a significant milestone, but it's way below previous estimates. In 2015, [TechCrunch](https://techcrunch.com/2015/10/16/leaked-pinterest-documents-show-revenue-growth-forecasts/) reported on leaked financial documents that showed Pinterest was then projecting sales of $2.8 billion by 2018. It's a tall task to break up the digital advertising duopoly of Google and Facebook, which control a combined 57 percent of U.S. digital ad spending, according to [eMarketer](https://www.emarketer.com/content/google-and-facebook-s-digital-dominance-fading-as-rivals-share-grows). `,
     category: 'seo',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title:
@@ -150,7 +150,7 @@ When you use The Free Dictionary site search box in the SERP for something that 
 They also show Google's dictionary widget at  position zero for the query [free dictionary](https://www.google.com.au/search?q=free+dictionary), [dictionary](https://www.google.com.au/search?q=free+dictionary), etc`,
     category: 'seo',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'IAB Survey Finds Podcast Ad Revenue Is Growing Fast',
@@ -165,7 +165,7 @@ They also show Google's dictionary widget at  position zero for the query [free 
 A new report indicates that podcasting revenues are a fast growing areas of digital advertising. The Internet Advertising Bureau (IAB) released a [research study -PDF](https://www.iab.com/wp-content/uploads/2018/06/2018_IAB_Podcast_Ad_Rev_Study_vFinal.pdf) showing that podcasting is experience accelerated growth and is forecast to keep on rising.`,
     category: 'paid-media',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title:
@@ -183,7 +183,7 @@ YouTube is testing a new tab in the iPhone app that is designed to help users fi
 Those who have been selected for the test group will notice that the Explore tab exists in place of the Trending tab.`,
     category: 'social-media',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'Amazon Sponsored Products Could Be Coming To A Website Near You',
@@ -195,7 +195,7 @@ In its latest bid to close the gap with Google and Facebook in digital ad sales,
 Amazon is talking with top agencies and brands about participating in a test that would expand the scope of product ads, delivering them to outside websites by retargeting consumers who visit Amazon.`,
     category: 'paid-media',
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
   {
     title: 'Declines In Pay TV Subscriptions Have Exceeded Previous Estimates',
@@ -212,7 +212,7 @@ Amazon is talking with top agencies and brands about participating in a test tha
     category: 'general',
 
     senderName: 'Saijo George',
-    senderTwitter: '@SaijoGeorge',
+    senderURL: 'https://twitter.com/@SaijoGeorge',
   },
 ]
 

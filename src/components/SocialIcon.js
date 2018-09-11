@@ -46,7 +46,7 @@ const icons = {
 const Icon = ({ icon, ...rest }) => {
   const Icon = icons[icon]
 
-  if (!Icon) return new Error('Invalid icon name')
+  if (!Icon) throw new Error('Invalid icon name')
 
   return <Icon width={20} height={20} fill="currentColor" {...rest} />
 }

@@ -5,14 +5,14 @@ import SearchIcon from '../components/SearchIcon'
 import { CategoryLink } from '../styles/typography'
 
 import categories from '../categories'
-import { colors } from '../styles/theme'
-import { min, max, rem } from '../styles/tools'
+import { colors, media } from '../styles/theme'
+import { rem } from '../styles/tools'
 
 const CategoriesBar = styled.div({
   position: 'sticky',
   top: 0,
   zIndex: 3,
-  [max(940 - 1)]: {
+  [media.max._sm]: {
     padding: rem(10),
     whiteSpace: 'nowrap',
     backgroundColor: colors.bg.blue.dark,
@@ -27,16 +27,20 @@ const CategoriesList = styled.ul({
   alignItems: 'center',
   color: colors.text.blue.dark,
   '> li': { marginRight: rem(10) },
-  [min(940)]: {
-    '> li': { marginRight: 0 },
+  [media._sm]: {
+    '> li:last-of-type': { marginRight: 0 },
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     paddingTop: rem(15),
     paddingBottom: rem(15),
-    margin: `0 ${rem(-14)}`,
     backgroundColor: colors.bg.blue.light,
-    boxShadow: `0 0 40px 30px ${colors.bg.blue.light}`,
+    boxShadow: `0 0 30px 15px ${colors.bg.blue.light}, 30px 0 30px 15px ${
+      colors.bg.blue.light
+    }`,
+  },
+  [media.laptopMd]: {
+    '> li': { flex: 1 },
   },
 })
 
@@ -50,13 +54,13 @@ const Categories = props => (
           </CategoryLink>
         </li>
       ))}
-      <li css={{ [max(940 - 1)]: { order: -1 } }}>
+      <li css={{ [media.max._sm]: { order: -1 } }}>
         <CategoryLink
           to="/search"
-          css={{ [min(940)]: { color: colors.text.blue.light } }}
+          // css={{ [media._sm]: { color: colors.text.blue.light } }}
           hoverColor={colors.text.blue.light}
         >
-          <SearchIcon style={{ marginRight: 5 }} />
+          <SearchIcon css={{ marginRight: rem(5) }} />
           Search
         </CategoryLink>
       </li>

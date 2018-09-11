@@ -1,14 +1,42 @@
+import React from 'react'
 import styled from 'react-emotion'
 import { Link } from 'gatsby'
+import TextTruncate from 'react-text-truncate'
+import removeMd from 'remove-markdown'
 
-import { space, colors } from './theme'
-import { min, rem } from './tools'
+import { media, space, colors } from './theme'
+import { rem } from './tools'
+
+export const paragraphStyles = {
+  fontSize: rem(16),
+  lineHeight: 1.6,
+  color: colors.text.grey.body,
+}
+
+export const markdownStyles = {
+  ...paragraphStyles,
+  '> * + *': {
+    marginTop: rem(14),
+  },
+  li: {
+    listStyle: 'disc',
+    marginLeft: rem(36),
+  },
+  a: {
+    color: colors.text.blue.medium,
+    textDecoration: 'underline',
+  },
+}
+
+export const Paragraph = styled.p(paragraphStyles)
+
+export const Strong = styled.strong({ fontWeight: 800 })
 
 export const Logo = styled(Link)({
   display: 'flex',
   alignItems: 'center',
   fontWeight: 800,
-  fontSize: 20,
+  fontSize: rem(20),
   lineHeight: 1,
   color: colors.text.blue.dark,
   background: 'rgba(239, 245, 248, 0.9)',
@@ -25,7 +53,7 @@ export const MediumHeading = styled.span({
 export const WideText = styled.span(
   {
     display: 'inline-block',
-    padding: space.rem.md,
+    padding: space.md,
     color: colors.text.blue.light,
     fontWeight: 900,
     fontSize: rem(10),
@@ -55,22 +83,17 @@ export const WideLink = styled(WideText)({
 export const CategoryLink = styled(Link)(
   {
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: `${rem(7)} ${rem(14)}`,
     position: 'relative',
     zIndex: 1,
     fontWeight: 800,
     fontSize: rem(14),
-    borderRadius: 5,
+    textAlign: 'center',
+    color: 'white',
+    borderRadius: '5px',
     transition: '.2s',
-    color: '#fff',
-    [min(940)]: {
-      color: 'inherit',
-      '::before': {
-        transform: 'scale(.9)',
-        opacity: 0,
-      },
-    },
     '::before': {
       content: '""',
       display: 'block',
@@ -83,13 +106,83 @@ export const CategoryLink = styled(Link)(
       borderRadius: 'inherit',
       transition: 'inherit',
     },
-    ':hover': {
-      color: '#fff',
-      '::before': {
-        opacity: 1,
-        transform: 'none',
-      },
-    },
   },
   ({ hoverColor }) => ({ '::before': { background: hoverColor } })
 )
+
+export const DayDate = styled.span({
+  fontWeight: 800,
+  fontSize: rem(14),
+  lineHeight: 1.2,
+  [media._sm]: {
+    fontWeight: 600,
+    fontSize: rem(24),
+  },
+  [media._md]: {
+    fontSize: rem(40),
+  },
+})
+
+DayDate.Detail = styled.span({
+  [media._sm]: {
+    display: 'block',
+    fontWeight: 700,
+    fontSize: rem(14),
+  },
+  [media._md]: { fontSize: rem(18) },
+})
+
+export const PostCategoryLabel = styled.div({
+  fontWeight: 800,
+  fontSize: rem(12),
+  color: 'white',
+  whiteSpace: 'nowrap',
+})
+
+export const PostTitle = ({ bigger, truncate = false, children, ...rest }) => {
+  const css = {
+    fontWeight: 800,
+    fontSize: rem(bigger ? 18 : 16),
+    [media._sm]: { fontSize: rem(19) },
+    color: colors.text.grey.heading,
+  }
+
+  return truncate ? (
+    <TextTruncate
+      textElement="h3"
+      line={2}
+      text={children}
+      css={css}
+      {...rest}
+    />
+  ) : (
+    <h3 css={css} {...rest}>
+      {children}
+    </h3>
+  )
+}
+
+export const PostURL = styled.span({
+  display: 'block',
+  marginTop: rem(3),
+  fontSize: rem(14),
+  color: colors.text.grey.body,
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+})
+
+export const PostSummary = Paragraph.withComponent(({ children, ...rest }) => (
+  <TextTruncate
+    textElement="p"
+    line={2}
+    truncateText="…"
+    text={removeMd(children)}
+    {...rest}
+  />
+))
+
+export const PostSender = styled.div({
+  fontSize: rem(13),
+  color: colors.text.blue.light,
+})
