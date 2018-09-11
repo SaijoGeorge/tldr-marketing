@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 import Layout from '../components/Layout'
 import Author from '../components/Author'
@@ -12,10 +11,10 @@ import { em } from '../styles/tools'
 
 const NavbarH1 = NavbarText.withComponent('h1')
 
-const AboutPage = () => (
+const NewsletterPage = () => (
   <Layout>
     <Navbar style={{ gridArea: 'InnerLayoutNavbar' }}>
-      <NavbarH1 size="md">About</NavbarH1>
+      <NavbarH1 size="md">Newsletter</NavbarH1>
       <div css={{ marginLeft: 'auto' }}>
         <NavbarLink to="/">
           <svg
@@ -46,12 +45,6 @@ const AboutPage = () => (
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum.
           </Paragraph>
-          <Link
-            to="/posts/post-05"
-            css={{ display: 'inline-block', marginTop: 20 }}
-          >
-            Go to post page
-          </Link>
           <Paragraph css={{ marginTop: 20 }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -76,4 +69,4 @@ const AboutPage = () => (
   </Layout>
 )
 
-export default AboutPage
+export default NewsletterPage

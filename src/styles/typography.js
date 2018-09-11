@@ -195,15 +195,21 @@ export const PostSender = styled.div({
   color: colors.text.blue.light,
 })
 
-export const NavbarText = styled.span({
-  display: 'flex',
-  alignItems: 'center',
-  lineHeight: 1,
-  fontWeight: 800,
-  fontSize: rem(14),
-  [media._sm]: {
-    fontSize: rem(16),
+export const NavbarText = styled.span(
+  {
+    display: 'flex',
+    alignItems: 'center',
+    lineHeight: 1,
+    fontWeight: 800,
+    fontSize: rem(14),
+    [media._sm]: {
+      fontSize: rem(16),
+    },
   },
-})
+  ({ size }) =>
+    size === 'md' && {
+      [media._sm]: { fontSize: rem(24) },
+    }
+)
 
 export const NavbarLink = NavbarText.withComponent(Link)
