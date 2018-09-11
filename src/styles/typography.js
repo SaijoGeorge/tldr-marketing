@@ -58,7 +58,10 @@ export const WideText = styled.span(
     fontWeight: 900,
     fontSize: rem(10),
     textTransform: 'uppercase',
-    letterSpacing: rem(4),
+    letterSpacing: rem(2.5),
+    [media.tabletMd]: {
+      letterSpacing: rem(4),
+    },
   },
   ({ verticalUp, verticalDown }) => ({
     writingMode: (verticalUp || verticalDown) && 'vertical-lr',

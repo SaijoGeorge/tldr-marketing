@@ -43,7 +43,7 @@ const PostLayout = styled.div(({ isOpen }) => ({
 }))
 
 const PostContent = styled.div(({ isOpen }) => ({
-  flexBasis: isOpen ? '100%' : '58%',
+  flexBasis: isOpen ? '100%' : '62%',
   order: isOpen ? 2 : 1,
   padding: space.md,
   paddingBottom: space.sm,
@@ -62,7 +62,7 @@ const PostContent = styled.div(({ isOpen }) => ({
 
 const PostFigure = styled.div(({ isOpen }) => ({
   alignSelf: 'stretch',
-  flexBasis: isOpen ? '100%' : '42%',
+  flexBasis: isOpen ? '100%' : '38%',
   order: isOpen ? 1 : 2,
   position: 'relative',
   [media.max._sm]: {
@@ -191,7 +191,10 @@ export const PostCategoryLabel = ({
     css={{
       position: 'absolute',
       zIndex: 1,
-      left: isOpen ? rem(24) : '58%',
+      left: isOpen ? rem(16 - 1) : '62%',
+      [media.mobileLg]: {
+        left: isOpen ? rem(24 - 1) : '62%',
+      },
       top: bottom ? null : 0,
       bottom: bottom ? 0 : null,
       [media._sm]: {
