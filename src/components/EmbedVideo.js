@@ -36,9 +36,9 @@ const EmbedVideo = ({ type, id, src, ratio = '56.25%', cover }) => {
       }
     >
       {type === 'video' ? (
-        <video src={src} controls crossorigin />
+        <video src={src} controls />
       ) : (
-        <iframe src={`${url}/${id}`} title="Embeded video" allowfullscreen />
+        <iframe src={`${url}/${id}`} title="Embeded video" allowFullScreen />
       )}
     </div>
   )
