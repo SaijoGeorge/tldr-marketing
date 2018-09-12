@@ -17,6 +17,7 @@ const EmbedVideo = ({ type, id, src, ratio = '56.25%', cover }) => {
         position: 'relative',
         paddingTop: ratio,
         backgroundColor: 'black',
+        overflow: 'hidden',
         '> *': {
           width: '100%',
           height: '100%',

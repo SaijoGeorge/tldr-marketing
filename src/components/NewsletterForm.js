@@ -73,6 +73,7 @@ const Input = styled.input({
   fontWeight: 700,
   fontSize: rem(16),
   color: colors.text.blue.dark,
+  appearance: 'none',
   borderRadius: 5,
   border: `solid 2px ${colors.border.blue.normal}`,
   backgroundColor: 'transparent',

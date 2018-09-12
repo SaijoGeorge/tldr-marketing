@@ -133,6 +133,7 @@ export const CategoryLabel = styled.div(
     fontWeight: 800,
     fontSize: rem(14),
     textAlign: 'center',
+    whiteSpace: 'nowrap',
     color: 'white',
     borderRadius: '5px',
     transition: 'color .2s',
