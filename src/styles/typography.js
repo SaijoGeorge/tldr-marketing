@@ -32,12 +32,22 @@ export const markdownStyles = {
   a: {
     color: colors.text.blue.medium,
     textDecoration: 'underline',
+    ':hover': {
+      transition: 'color .2s',
+      ':hover': {
+        color: colors.text.blue.dark,
+      },
+    },
   },
   img: {
     display: 'block',
     maxHeight: '90vh',
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+  'img, .EmbedVideo': {
+    borderRadius: 5,
+    overflow: 'hidden',
   },
 }
 
@@ -92,21 +102,21 @@ export const WideLabel = styled(WideText)({
 }).withComponent('label')
 
 export const WideButton = styled(WideText)({
-  transition: '.2s',
+  transition: 'color .2s',
   ':hover': {
     color: colors.text.blue.dark,
   },
 }).withComponent('button')
 
 export const WideLink = styled(WideText)({
-  transition: '.2s',
+  transition: 'color .2s',
   ':hover': {
     color: colors.text.blue.dark,
   },
 }).withComponent(Link)
 
 export const WideExternalLink = styled(WideText)({
-  transition: '.2s',
+  transition: 'color .2s',
   ':hover': {
     color: colors.text.blue.dark,
   },
@@ -125,7 +135,7 @@ export const CategoryLabel = styled.div(
     textAlign: 'center',
     color: 'white',
     borderRadius: '5px',
-    transition: '.2s',
+    transition: 'color .2s',
     '::before': {
       content: '""',
       display: 'block',
@@ -221,6 +231,13 @@ export const PostSender = styled.div({
   color: colors.text.blue.light,
 })
 
+export const SenderLink = styled(ExternalLink)({
+  transition: 'color .2s',
+  ':hover': {
+    color: colors.text.blue.dark,
+  },
+})
+
 export const NavbarText = styled.span(
   {
     display: 'flex',
@@ -238,4 +255,11 @@ export const NavbarText = styled.span(
     }
 )
 
-export const NavbarLink = NavbarText.withComponent(Link)
+export const NavbarLink = styled(NavbarText)({
+  transition: 'color .2s',
+  [media._sm]: {
+    ':hover': {
+      color: colors.text.blue.dark,
+    },
+  },
+}).withComponent(Link)

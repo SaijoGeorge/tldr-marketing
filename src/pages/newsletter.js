@@ -4,10 +4,9 @@ import Layout from '../components/Layout'
 import Author from '../components/Author'
 import Navbar from '../components/Navbar'
 import NewsletterForm from '../components/NewsletterForm'
+import GoBackLink from '../components/GoBackLink'
 import { ContentLayout } from '../styles/layouts'
-import { NavbarText, NavbarLink } from '../styles/typography'
-
-import { em } from '../styles/tools'
+import { NavbarText } from '../styles/typography'
 
 const NavbarH1 = NavbarText.withComponent('h1')
 
@@ -16,20 +15,7 @@ const NewsletterPage = () => (
     <Navbar style={{ gridArea: 'InnerLayoutNavbar' }}>
       <NavbarH1 size="md">Newsletter</NavbarH1>
       <div css={{ marginLeft: 'auto' }}>
-        <NavbarLink to="/">
-          <svg
-            viewBox="0 0 24 24"
-            css={{
-              width: em(26),
-              height: em(26),
-              marginRight: em(5),
-              fill: 'currentColor',
-            }}
-          >
-            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
-          </svg>
-          Go back
-        </NavbarLink>
+        <GoBackLink />
       </div>
     </Navbar>
     <main style={{ gridArea: 'InnerLayoutContent' }}>

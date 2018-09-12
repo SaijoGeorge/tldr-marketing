@@ -100,5 +100,6 @@ injectGlobal`
   body {
     font-family: Nunito, sans-serif;
     background-color: ${colors.bg.blue.light};
+    overflow-x: hidden;
   }
 `

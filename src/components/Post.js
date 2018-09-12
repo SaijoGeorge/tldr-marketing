@@ -17,6 +17,7 @@ import {
   PostSummary,
   PostCategoryLabel as PostCategoryLabelType,
   PostSender,
+  SenderLink,
 } from '../styles/typography'
 
 import { media, space, colors } from '../styles/theme'
@@ -30,13 +31,11 @@ const PostLayout = styled.div(({ isOpen, isDefaultOpen }) => ({
   position: 'relative',
   background: 'white',
   [media._sm]: {
-    flexWrap: 'nowrap',
     padding: rem(20),
     paddingBottom: !isDefaultOpen && 0,
   },
   [media.max._sm]: {
     ...(isOpen && {
-      borderBottom: 'none !important',
       marginTop: rem(30),
       marginBottom: `${rem(30)} !important`,
     }),
@@ -53,10 +52,9 @@ const PostContent = styled.div(({ isOpen, isDefaultOpen }) => ({
     paddingBottom: !isDefaultOpen && rem(12),
   },
   [media._sm]: {
-    flexBasis: '65%',
+    flexBasis: isOpen ? '100%' : '65%',
     padding: rem(12),
-    paddingRight: rem(24),
-    order: 1,
+    paddingRight: !isOpen && rem(24),
   },
   overflow: 'hidden',
 }))
@@ -78,20 +76,35 @@ const PostFigure = styled.div(({ isOpen }) => ({
   },
   [media._sm]: {
     alignSelf: 'flex-start',
-    flexBasis: '35%',
-    // ...(isOpen && {
-    //   position: 'sticky',
-    //   top: rem(100),
-    // }),
+    flexBasis: isOpen ? '100%' : '35%',
     marginBottom: rem(20),
-    order: 2,
+    padding: isOpen && rem(12),
+    paddingBottom: 0,
   },
 }))
 
 const PostImg = styled.img({
   display: 'block',
   width: '100%',
+  cursor: 'zoom-in',
+  [media._sm]: {
+    border: 'solid 1px #e0ebf1',
+    borderRadius: 5,
+  },
 })
+
+const ZoomablePostImg = ({ img, ...rest }) => (
+  <ZoomableImg img={{ ...img, msrc: img.src }}>
+    {({ getOpenerProps }) => (
+      <PostImg
+        {...getOpenerProps({ useInnerRef: true })}
+        src={img.src}
+        alt={img.alt}
+        {...rest}
+      />
+    )}
+  </ZoomableImg>
+)
 
 const PostThumb = React.forwardRef(({ src, alt, ...rest }, ref) => (
   <div
@@ -107,6 +120,8 @@ const PostThumb = React.forwardRef(({ src, alt, ...rest }, ref) => (
       backgroundSize: 'cover',
       backgroundColor: colors.bg.blue.normal,
       backgroundBlendMode: 'luminosity',
+      ':hover': { backgroundBlendMode: 'normal' },
+      cursor: 'zoom-in',
       [media._sm]: {
         border: 'solid 1px #e0ebf1',
         borderRadius: 5,
@@ -119,10 +134,6 @@ const PostThumb = React.forwardRef(({ src, alt, ...rest }, ref) => (
         position: 'relative',
         zIndex: 1,
         paddingBottom: '58%',
-      },
-      ':hover': {
-        cursor: 'zoom-in',
-        backgroundBlendMode: 'normal',
       },
     }}
     {...rest}
@@ -172,7 +183,15 @@ const PostImgPlaceholder = styled.div(
       paddingBottom: '58%',
     },
   },
-  ({ short }) => short && { '::after': { paddingBottom: '30%' } }
+  ({ short }) =>
+    short && {
+      '::after': {
+        paddingBottom: '30%',
+        [media._sm]: {
+          paddingBottom: '10%',
+        },
+      },
+    }
 )
 
 const PostLink = styled(ExternalLink)({
@@ -286,9 +305,9 @@ const Post = ({
       Submitted by:{' '}
       <Strong>
         {senderURL ? (
-          <ExternalLink noindex href={senderURL}>
+          <SenderLink noindex href={senderURL}>
             {senderName}
-          </ExternalLink>
+          </SenderLink>
         ) : (
           senderName
         )}
@@ -381,12 +400,7 @@ const Post = ({
 
                   {isOpen &&
                     showSender && (
-                      <PostSender
-                        css={{
-                          [media._sm]: { display: 'none' },
-                          marginTop: rem(22),
-                        }}
-                      >
+                      <PostSender css={{ marginTop: rem(22) }}>
                         {senderLabel}
                       </PostSender>
                     )}
@@ -397,7 +411,8 @@ const Post = ({
                 {resource ? (
                   <Fragment>
                     {resource.type === 'img' &&
-                      isDesktop && <PostZoomableThumb img={resource} />}
+                      isDesktop &&
+                      !isOpen && <PostZoomableThumb img={resource} />}
 
                     {resource.type === 'img' &&
                       !isDesktop &&
@@ -410,10 +425,7 @@ const Post = ({
                       )}
 
                     {resource.type === 'img' &&
-                      !isDesktop &&
-                      isOpen && (
-                        <PostImg src={resource.src} alt={resource.alt} />
-                      )}
+                      isOpen && <ZoomablePostImg img={resource} />}
 
                     {(resource.type === 'youtube' ||
                       resource.type === 'vimeo' ||
@@ -447,23 +459,8 @@ const Post = ({
                       )}
                   </Fragment>
                 ) : (
-                  <PostImgPlaceholder
-                    onClick={open}
-                    short={!isDesktop && isOpen}
-                  />
+                  <PostImgPlaceholder onClick={open} short={isOpen} />
                 )}
-
-                {isOpen &&
-                  showSender && (
-                    <PostSender
-                      css={{
-                        [media.max._sm]: { display: 'none' },
-                        marginTop: rem(13),
-                      }}
-                    >
-                      {senderLabel}
-                    </PostSender>
-                  )}
 
                 {isOpen &&
                   !isDesktop && (

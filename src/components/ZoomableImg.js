@@ -12,6 +12,8 @@ injectGlobal({
 })
 
 class ZoomableImg extends Component {
+  static defaultProps = { showHideOpacity: true }
+
   initGallery = () => {
     const items = [this.props.img]
     const options = {
@@ -20,7 +22,7 @@ class ZoomableImg extends Component {
       shareEl: false,
       counterEl: false,
       fullscreenEl: false,
-      showHideOpacity: true,
+      showHideOpacity: this.props.showHideOpacity,
       bgOpacity: 0.8,
       getThumbBoundsFn: () => {
         const pageYScroll =
@@ -40,8 +42,8 @@ class ZoomableImg extends Component {
     this.gallery.init()
   }
 
-  getOpenerProps = ({ onClick = () => {} } = {}) => ({
-    ref: ref => (this.thumb = ref),
+  getOpenerProps = ({ onClick = () => {}, useInnerRef = false } = {}) => ({
+    [useInnerRef ? 'innerRef' : 'ref']: ref => (this.thumb = ref),
     onClick: () => {
       onClick()
       this.initGallery()

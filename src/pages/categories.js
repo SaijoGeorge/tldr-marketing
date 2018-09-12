@@ -6,10 +6,11 @@ import Navbar from '../components/Navbar'
 import Author from '../components/Author'
 import Day from '../components/Day'
 import StyledLoadingBar from '../components/StyledLoadingBar'
-import { CategoryLabel, NavbarText, NavbarLink } from '../styles/typography'
+import GoBackLink from '../components/GoBackLink'
+import { CategoryLabel, NavbarText } from '../styles/typography'
 
 import { media } from '../styles/theme'
-import { em, rem } from '../styles/tools'
+import { rem } from '../styles/tools'
 import categories from '../categories'
 import posts from '../posts'
 
@@ -26,27 +27,7 @@ const CategoryPage = ({ categorySlug }) => (
         <NavbarText css={{ marginLeft: rem(10) }}>news roundup</NavbarText>
       </h1>
       <div css={{ marginLeft: 'auto' }}>
-        <NavbarLink
-          to="/"
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            lineHeight: 1,
-          }}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            css={{
-              width: em(26),
-              height: em(26),
-              marginRight: em(5),
-              fill: 'currentColor',
-            }}
-          >
-            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
-          </svg>
-          Go back
-        </NavbarLink>
+        <GoBackLink />
       </div>
     </Navbar>
     <main style={{ gridArea: 'InnerLayoutContent' }}>

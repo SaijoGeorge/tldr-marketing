@@ -4,16 +4,16 @@ import Layout from '../components/Layout'
 import Navbar from '../components/Navbar'
 import TextContainer from '../components/TextContainer'
 import RenderMarkdown from '../components/RenderMarkdown'
+import GoBackLink from '../components/GoBackLink'
 import { ContentLayout } from '../styles/layouts'
 import {
   NavbarText,
-  NavbarLink,
   MediumHeading,
   WideExternalLink,
 } from '../styles/typography'
 
 import { media } from '../styles/theme'
-import { em, rem } from '../styles/tools'
+import { rem } from '../styles/tools'
 import avatar from '../images/saijo-george.png'
 
 const MediumHeading4 = MediumHeading.withComponent('h4')
@@ -107,20 +107,7 @@ const AboutPage = () => (
     <Navbar style={{ gridArea: 'InnerLayoutNavbar' }}>
       <NavbarH1 size="md">About</NavbarH1>
       <div css={{ marginLeft: 'auto' }}>
-        <NavbarLink to="/">
-          <svg
-            viewBox="0 0 24 24"
-            css={{
-              width: em(26),
-              height: em(26),
-              marginRight: em(5),
-              fill: 'currentColor',
-            }}
-          >
-            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
-          </svg>
-          Go back
-        </NavbarLink>
+        <GoBackLink />
       </div>
     </Navbar>
     <main style={{ gridArea: 'InnerLayoutContent' }}>
