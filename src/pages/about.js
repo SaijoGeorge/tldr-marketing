@@ -1,16 +1,84 @@
 import React from 'react'
 
 import Layout from '../components/Layout'
-import Author from '../components/Author'
 import Navbar from '../components/Navbar'
 import TextContainer from '../components/TextContainer'
 import RenderMarkdown from '../components/RenderMarkdown'
 import { ContentLayout } from '../styles/layouts'
-import { NavbarText, NavbarLink } from '../styles/typography'
+import {
+  NavbarText,
+  NavbarLink,
+  MediumHeading,
+  WideExternalLink,
+} from '../styles/typography'
 
+import { media } from '../styles/theme'
 import { em, rem } from '../styles/tools'
+import avatar from '../images/saijo-george.png'
 
+const MediumHeading4 = MediumHeading.withComponent('h4')
 const NavbarH1 = NavbarText.withComponent('h1')
+
+const Author = props => (
+  <div
+    css={{
+      [media.max._sm]: { display: 'none' },
+      width: 'calc(100% - 60px)',
+      position: 'sticky',
+      top: rem(200),
+      background: 'rgba(239, 245, 248, 0.9)',
+      boxShadow: '0 0 30px 30px rgba(239, 245, 248, 0.9)',
+    }}
+    {...props}
+  >
+    <img
+      src={avatar}
+      alt="Saijo George"
+      css={{
+        width: rem(90),
+        height: rem(90),
+        borderRadius: '50%',
+        mixBlendMode: 'luminosity',
+      }}
+    />
+    <MediumHeading4
+      css={{
+        marginTop: rem(25),
+        marginBottom: rem(22),
+        fontSize: rem(22),
+        lineHeight: 1.3,
+      }}
+    >
+      Created by
+      <br />
+      Saijo George
+    </MediumHeading4>
+    <WideExternalLink
+      href="http://linkedin.com/in/saijogeorge"
+      css={{ display: 'block', padding: `${rem(10)} 0` }}
+    >
+      LINKEDIN
+    </WideExternalLink>
+    <WideExternalLink
+      href="http://facebook.com/saijogeorge"
+      css={{ display: 'block', padding: `${rem(10)} 0` }}
+    >
+      FACEBOOK
+    </WideExternalLink>
+    <WideExternalLink
+      href="http://twitter.com/saijogeorge"
+      css={{ display: 'block', padding: `${rem(10)} 0` }}
+    >
+      TWITTER
+    </WideExternalLink>
+    <WideExternalLink
+      href="https://saijogeorge.com/"
+      css={{ display: 'block', padding: `${rem(10)} 0` }}
+    >
+      WEBSITE
+    </WideExternalLink>
+  </div>
+)
 
 const content = `
 ## tl;dr Marketing - SEO Newsletter
@@ -56,8 +124,8 @@ const AboutPage = () => (
       </div>
     </Navbar>
     <main style={{ gridArea: 'InnerLayoutContent' }}>
-      <Author />
       <ContentLayout>
+        <Author style={{ gridArea: 'ContentLayoutSidebar' }} />
         <TextContainer style={{ gridArea: 'ContentLayoutContent' }}>
           <RenderMarkdown css={{ fontSize: rem(18) }}>{content}</RenderMarkdown>
         </TextContainer>

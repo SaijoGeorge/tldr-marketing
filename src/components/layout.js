@@ -2,15 +2,21 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'react-emotion'
+import Media from 'react-media'
 
 import SocialIcon from './SocialIcon'
 import ExternalLink from './ExternalLink'
+import NewsletterForm from './NewsletterForm'
 import { OuterLayout, InnerLayout } from '../styles/layouts'
-import { Logo, WideText, WideLink } from '../styles/typography'
+import { Logo, WideText, WideLink, MediumHeading } from '../styles/typography'
 
 import '../styles/global'
 import { media, space, colors } from '../styles/theme'
 import { rem } from '../styles/tools'
+
+import avatar from '../images/saijo-george.png'
+
+const MediumHeading4 = MediumHeading.withComponent('h4')
 
 const Bar = styled.div({
   display: 'flex',
@@ -22,9 +28,19 @@ const Bar = styled.div({
   padding: `${space.md} ${space.lg}`,
 })
 
-const SocialIcons = props => (
+const SocialIcons = ({ horizontal, ...rest }) => (
   <ul
     css={{
+      ...(horizontal && {
+        display: 'flex',
+        '> li:not(:last-of-type)': {
+          marginRight: rem(13),
+        },
+        svg: {
+          width: rem(24),
+          height: rem(24),
+        },
+      }),
       margin: `${rem(space.px.md - space.px.xs)} 0`,
       'a, svg': {
         display: 'block',
@@ -33,7 +49,7 @@ const SocialIcons = props => (
         padding: `${space.xs} 0`,
         color: colors.text.blue.light,
         borderRadius: '50%',
-        transform: 'rotate(-90deg)',
+        transform: !horizontal && 'rotate(-90deg)',
         transition: '.2s',
         ':hover': {
           color: colors.text.blue.dark,
@@ -41,7 +57,7 @@ const SocialIcons = props => (
         },
       },
     }}
-    {...props}
+    {...rest}
   >
     <li>
       <ExternalLink href="http://linkedin.com/in/saijogeorge">
@@ -95,32 +111,79 @@ const RightBar = props => (
 const Header = props => (
   <header
     css={{
-      display: 'flex',
-      paddingLeft: space.md,
-      [media.mobileLg]: { paddingLeft: rem(24) },
       [media._sm]: {
-        height: rem(70),
         position: 'sticky',
         zIndex: 4,
         top: space.lg,
-        paddingLeft: 0,
       },
     }}
     {...props}
   >
-    <Logo to="/" css={{ width: '80%' }}>
-      tl;dr
-      <br />
-      marketing
-    </Logo>
-    <ul css={{ display: 'flex', [media._sm]: { display: 'none' } }}>
-      <li>
-        <WideLink to="/sponsored">Sponsored</WideLink>
-      </li>
-      <li>
-        <WideLink to="/about">About</WideLink>
-      </li>
-    </ul>
+    <div
+      css={{
+        display: 'flex',
+        paddingLeft: space.md,
+        [media.mobileLg]: { paddingLeft: rem(24) },
+        [media._sm]: {
+          height: rem(70),
+          paddingLeft: 0,
+        },
+      }}
+    >
+      <Logo to="/" css={{ width: '80%' }}>
+        tl;dr
+        <br />
+        marketing
+      </Logo>
+      <ul css={{ display: 'flex', [media._sm]: { display: 'none' } }}>
+        <li>
+          <WideLink to="/sponsored">Sponsored</WideLink>
+        </li>
+        <li>
+          <WideLink to="/about">About</WideLink>
+        </li>
+      </ul>
+    </div>
+    <div
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        [media._sm]: { display: 'none' },
+        marginTop: rem(32),
+        marginBottom: rem(15),
+        padding: `0 ${space.md}`,
+        [media.mobileLg]: { padding: `0 ${rem(24)}` },
+      }}
+    >
+      <div css={{ display: 'flex', alignItems: 'center' }}>
+        <img
+          src={avatar}
+          alt="Saijo George"
+          css={{
+            width: rem(45),
+            height: rem(45),
+            borderRadius: '50%',
+            filter: 'grayscale(1)',
+          }}
+        />
+        <MediumHeading4
+          css={{
+            marginLeft: rem(10),
+            fontSize: rem(15),
+          }}
+        >
+          Created by
+          <br />
+          Saijo George
+        </MediumHeading4>
+      </div>
+      <div css={{ marginLeft: 'auto' }}>
+        <SocialIcons horizontal />
+      </div>
+    </div>
+    <Media query={media.query.max._sm}>
+      {isMobile => isMobile && <NewsletterForm />}
+    </Media>
   </header>
 )
 

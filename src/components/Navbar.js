@@ -25,7 +25,8 @@ const Navbar = styled.nav({
     padding: rem(10),
     whiteSpace: 'nowrap',
     backgroundColor: colors.bg.blue.dark,
-    overflow: 'auto',
+    overflowX: 'auto',
+    overflowY: 'hidden',
     WebkitOverflowScrolling: 'touch',
   },
 })

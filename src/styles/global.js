@@ -90,7 +90,7 @@ injectGlobal`
     color: inherit;
   }
 
-  button {
+  button, input {
     font: inherit;
     color: inherit;
     background: none;

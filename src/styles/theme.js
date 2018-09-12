@@ -43,6 +43,7 @@ export const colors = {
       body: '#777',
     },
     blue: {
+      lightest: '#AFC8D4',
       light: '#B1BFC6',
       medium: '#3186b1',
       dark: '#263E5B',
@@ -62,7 +63,8 @@ export const colors = {
   border: {
     blue: {
       light: '#e0ebf1',
-      normal: '#add2e4',
+      normal: '#CDDEE6',
+      medium: '#add2e4',
     },
   },
   shadow: {

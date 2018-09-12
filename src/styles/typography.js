@@ -4,8 +4,10 @@ import { Link } from 'gatsby'
 import TextTruncate from 'react-text-truncate'
 import removeMd from 'remove-markdown'
 
+import ExternalLink from '../components/ExternalLink'
+
 import { media, space, colors } from './theme'
-import { rem } from './tools'
+import { em, rem } from './tools'
 
 export const paragraphStyles = {
   fontSize: rem(16),
@@ -72,16 +74,22 @@ export const WideText = styled.span(
     fontWeight: 900,
     fontSize: rem(10),
     textTransform: 'uppercase',
-    letterSpacing: rem(2.5),
+    letterSpacing: em(2.5, 10),
     [media.tabletMd]: {
-      letterSpacing: rem(4),
+      letterSpacing: em(4, 10),
     },
   },
-  ({ verticalUp, verticalDown }) => ({
+  ({ verticalUp, verticalDown, size }) => ({
+    ...(size === 'md' && { fontSize: rem(11) }),
     writingMode: (verticalUp || verticalDown) && 'vertical-lr',
     transform: verticalUp && 'rotate(180deg)',
   })
 )
+
+export const WideLabel = styled(WideText)({
+  padding: 0,
+  marginBottom: rem(5),
+}).withComponent('label')
 
 export const WideButton = styled(WideText)({
   transition: '.2s',
@@ -96,6 +104,13 @@ export const WideLink = styled(WideText)({
     color: colors.text.blue.dark,
   },
 }).withComponent(Link)
+
+export const WideExternalLink = styled(WideText)({
+  transition: '.2s',
+  ':hover': {
+    color: colors.text.blue.dark,
+  },
+}).withComponent(ExternalLink)
 
 export const CategoryLabel = styled.div(
   {

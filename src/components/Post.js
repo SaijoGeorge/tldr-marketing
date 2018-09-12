@@ -79,8 +79,10 @@ const PostFigure = styled.div(({ isOpen }) => ({
   [media._sm]: {
     alignSelf: 'flex-start',
     flexBasis: '35%',
-    position: 'sticky',
-    top: rem(100),
+    // ...(isOpen && {
+    //   position: 'sticky',
+    //   top: rem(100),
+    // }),
     marginBottom: rem(20),
     order: 2,
   },
@@ -179,7 +181,7 @@ const PostLink = styled(ExternalLink)({
   transition: 'box-shadow .3s',
   boxShadow: `0 0 0 5px white, 0 0 0 5px transparent`,
   ':hover': {
-    boxShadow: `0 0 0 5px white, 0 0 0 8px ${colors.border.blue.normal}`,
+    boxShadow: `0 0 0 5px white, 0 0 0 8px ${colors.border.blue.medium}`,
   },
 })
 
@@ -355,7 +357,6 @@ const Post = ({
                           textAlign: 'left',
                           cursor: 'pointer',
                           outline: 'none',
-                          fontSize: rem(10),
                         }}
                       >
                         Show less <Arrow direction="top" />
@@ -372,7 +373,6 @@ const Post = ({
                           flex: 1,
                           paddingTop: rem(24),
                           paddingLeft: 0,
-                          fontSize: rem(10),
                         }}
                       >
                         Show more <Arrow direction="bottom" />
@@ -420,7 +420,11 @@ const Post = ({
                       resource.type === 'video') &&
                       (resource.id || resource.src) && (
                         <div
+                          onClick={() => !isDesktop && !isOpen && open()}
                           css={{
+                            '> *': {
+                              pointerEvents: !isDesktop && !isOpen && 'none',
+                            },
                             width: '100%',
                             height: '100%',
                             [media._sm]: {
