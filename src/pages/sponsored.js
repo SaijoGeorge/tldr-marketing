@@ -19,13 +19,14 @@ This content is also written in markdown.
 
 Link below is internal link addded with special shortcode:
 
-[[ link text="Internal link to /posts/post-05" to="/posts/post-05" ]]
+[[ link text="Internal link to /posts/post-01" to="/posts/post-01" ]]
 
 For now we have followingn shortoces:
 \`\`\`
 [ link text="About page" to="/about" ]
 [ youtube id="..." ]
-[ video id="..." ]
+[ vimeo id="..." ]
+[ video src="..." ]
 \`\`\`
 `
 

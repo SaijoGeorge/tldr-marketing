@@ -30,6 +30,8 @@ I work on a bunch of side projects, here are a few that you might enjoy. There i
 [[ youtube id="Kch8n4tcOZQ" ]]
 
 [[ vimeo id="286945944" ]]
+
+[[ video src="http://asista.pl/f/ati.mp4" ]]
 `
 
 const AboutPage = () => (

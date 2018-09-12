@@ -6,18 +6,16 @@ const links = [
     title: 'Not Secure Label Is Now Live For HTTP Sites On Chrome',
     url:
       'https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html',
-    img: {
-      src: withPrefix('/images/p1.png'),
-      alt: '',
-      w: 705,
-      h: 306,
+    resource: {
+      type: 'youtube',
+      id: 'Kch8n4tcOZQ',
     },
     description: `
 It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.
     
 ![Some test image](https://images.unsplash.com/photo-1536641480196-ed8d5b3ed21f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9e32ed3893fed0e0e5a1c5ef59861d3a&auto=format&fit=crop&w=2100&q=80)
 
-[[ youtube id="Kch8n4tcOZQ" ]]
+[[ vimeo id="286945944" ]]
   `,
     category: 'sponsored',
     senderName: 'Saijo George',
@@ -28,11 +26,9 @@ It looks like with the latest version of Chrome (just go in and manually update 
     title: 'Not Secure Label Is Now Live For HTTP Sites On Chrome',
     url:
       'https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html',
-    img: {
-      src: withPrefix('/images/p1.png'),
-      alt: '',
-      w: 705,
-      h: 306,
+    resource: {
+      type: 'vimeo',
+      id: '286945944',
     },
     description: `It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.`,
     category: 'seo',
@@ -45,10 +41,9 @@ It looks like with the latest version of Chrome (just go in and manually update 
       'Mark Up Sections Of A News Article To Be Read Aloud By The Google Assistant',
     url:
       'https://webmasters.googleblog.com/2018/07/hey-google-whats-latest-news.html',
-    img: {
-      src: withPrefix('/images/p2.png'),
-      w: 640,
-      h: 352,
+    resource: {
+      type: 'video',
+      src: 'http://asista.pl/f/ati.mp4',
     },
     alt: '',
     description: `Google has announced a new schema.org structured data specification (still pending) called [speakable](https://pending.schema.org/speakable) for **[eligible publishers](https://developers.google.com/search/docs/data-types/speakable#eligibility)** to mark up sections of a news article that are most relevant to be read aloud by the Google Assistant.The speakable property works on Google Home devices for English-speaking users in the U.S. only.Links : [Technical Details](https://developers.google.com/search/docs/data-types/speakable) & [Submit your Interest](https://services.google.com/fb/forms/speakablenewsinterest/) if you are a Google News Publisher. `,
@@ -61,7 +56,8 @@ It looks like with the latest version of Chrome (just go in and manually update 
     title: 'Google Tests New Design For Image Search Results',
     url:
       'https://www.searchenginejournal.com/google-tests-new-design-for-image-search-results/262641/',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p3.png'),
       w: 1000,
       h: 380,
@@ -78,7 +74,8 @@ It does not show up for me, so this could be a limited test or a gradual rollout
     slug: 'post-05',
     title: 'Google Tests Price Insights For Hotel Listings',
     url: 'https://alakov.com/blog/price-insights-test',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p4.png'),
       w: 827,
       h: 657,
@@ -104,7 +101,8 @@ It does not show up for me, so this could be a limited test or a gradual rollout
     slug: 'post-06',
     title: "GMB Dashboard Starts Showing Competitor's Google Posts",
     url: 'https://twitter.com/brodieseo/status/1021545487558537218',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p5.jpg'),
       w: 468,
       h: 347,
@@ -120,7 +118,8 @@ Looks like Google really wants you to add more things through Google Posts and t
     slug: 'post-07',
     title: 'Alphabet Q2 Reported At 32.7 Billion Up 26% YoY',
     url: 'https://www.cnbc.com/2018/07/23/alphabet-earnings-q2-2018.html',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p6.png'),
       w: 567,
       h: 207,
@@ -154,7 +153,8 @@ Reaching $1 billion in revenue will mark a significant milestone, but it's way b
       'Google Seems To Have Hijacked The Search Box For TheFreeDictionary.com',
     url:
       'https://www.seroundtable.com/google-dictionary-branded-free-dictionary-26091.html',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p8.png'),
       w: 654,
       h: 365,
@@ -171,7 +171,8 @@ They also show Google's dictionary widget at  position zero for the query [free 
     slug: 'post-10',
     title: 'IAB Survey Finds Podcast Ad Revenue Is Growing Fast',
     url: 'https://www.searchenginejournal.com/podcast-ad-revenues/262655/',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p9.png'),
       w: 696,
       h: 334,
@@ -189,7 +190,8 @@ A new report indicates that podcasting revenues are a fast growing areas of digi
       'YouTube Tests An Explore Tab To Help Users Discover Videos Based On Viewing Activity',
     url:
       'https://www.searchenginejournal.com/youtubes-new-explore-tab-helps-users-discover-videos-based-on-viewing-activity/262823/',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p10.jpg'),
       w: 760,
       h: 400,
@@ -220,7 +222,8 @@ Amazon is talking with top agencies and brands about participating in a test tha
     title: 'Declines In Pay TV Subscriptions Have Exceeded Previous Estimates',
     url:
       'https://www.recode.net/2018/7/24/17604218/partnering-with-netflix-and-hulu-hasnt-stopped-pay-tv-providers-from-losing-customers',
-    img: {
+    resource: {
+      type: 'img',
       src: withPrefix('/images/p12.png'),
       w: 845,
       h: 292,

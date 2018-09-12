@@ -16,8 +16,10 @@ export const paragraphStyles = {
 export const markdownStyles = {
   ...paragraphStyles,
   '> * + *': { marginTop: rem(14) },
-  '> img + *, > * + img': { marginTop: rem(28) },
-  '> p > img': { margin: `${rem(28)} auto` },
+  '> img + *, > * + img, > .EmbedVideo + *, > * + .EmbedVideo': {
+    marginTop: rem(28),
+  },
+  '> p > img, > p > .EmbedVideo': { margin: `${rem(28)} auto` },
   'h1, h2, h3, h4, h5, h6': { fontWeight: 700 },
   h2: { fontSize: 24 },
   'h3, h4, h5, h6': { fontSize: 20 },

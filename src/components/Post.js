@@ -7,6 +7,7 @@ import styled from 'react-emotion'
 import ZoomableImg from './ZoomableImg'
 import RenderMarkdown from '../components/RenderMarkdown'
 import ExternalLink from '../components/ExternalLink'
+import EmbedVideo from '../components/EmbedVideo'
 import {
   Strong,
   WideLink,
@@ -66,7 +67,7 @@ const PostFigure = styled.div(({ isOpen }) => ({
   order: isOpen ? 1 : 2,
   position: 'relative',
   [media.max._sm]: {
-    '::after': {
+    '::after': isOpen && {
       content: '""',
       width: '100%',
       height: '1px',
@@ -78,6 +79,8 @@ const PostFigure = styled.div(({ isOpen }) => ({
   [media._sm]: {
     alignSelf: 'flex-start',
     flexBasis: '35%',
+    position: 'sticky',
+    top: rem(100),
     marginBottom: rem(20),
     order: 2,
   },
@@ -257,7 +260,7 @@ const Post = ({
     slug,
     title,
     url,
-    img,
+    resource,
     senderName,
     senderURL,
     description,
@@ -391,24 +394,58 @@ const Post = ({
               </PostContent>
 
               <PostFigure isOpen={isOpen}>
-                {!img && (
+                {resource ? (
+                  <Fragment>
+                    {resource.type === 'img' &&
+                      isDesktop && <PostZoomableThumb img={resource} />}
+
+                    {resource.type === 'img' &&
+                      !isDesktop &&
+                      !isOpen && (
+                        <PostThumb
+                          onClick={open}
+                          src={resource.src}
+                          alt={resource.alt}
+                        />
+                      )}
+
+                    {resource.type === 'img' &&
+                      !isDesktop &&
+                      isOpen && (
+                        <PostImg src={resource.src} alt={resource.alt} />
+                      )}
+
+                    {(resource.type === 'youtube' ||
+                      resource.type === 'vimeo' ||
+                      resource.type === 'video') &&
+                      (resource.id || resource.src) && (
+                        <div
+                          css={{
+                            width: '100%',
+                            height: '100%',
+                            [media._sm]: {
+                              border: 'solid 1px #e0ebf1',
+                              borderRadius: 5,
+                              overflow: 'hidden',
+                            },
+                          }}
+                        >
+                          <EmbedVideo
+                            type={resource.type}
+                            id={resource.id}
+                            src={resource.src}
+                            ratio="58%"
+                            cover={!isDesktop && !isOpen}
+                          />
+                        </div>
+                      )}
+                  </Fragment>
+                ) : (
                   <PostImgPlaceholder
                     onClick={open}
                     short={!isDesktop && isOpen}
                   />
                 )}
-
-                {img && isDesktop && <PostZoomableThumb img={img} />}
-
-                {img &&
-                  !isDesktop &&
-                  !isOpen && (
-                    <PostThumb onClick={open} src={img.src} alt={img.alt} />
-                  )}
-
-                {img &&
-                  !isDesktop &&
-                  isOpen && <PostImg src={img.src} alt={img.alt} />}
 
                 {isOpen &&
                   showSender && (
