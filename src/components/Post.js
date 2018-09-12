@@ -422,15 +422,17 @@ const Post = ({
                         <div
                           onClick={() => !isDesktop && !isOpen && open()}
                           css={{
-                            '> *': {
-                              pointerEvents: !isDesktop && !isOpen && 'none',
-                            },
                             width: '100%',
                             height: '100%',
                             [media._sm]: {
                               border: 'solid 1px #e0ebf1',
                               borderRadius: 5,
                               overflow: 'hidden',
+                            },
+                            [media.max._sm]: {
+                              '> *': {
+                                pointerEvents: !isOpen && 'none',
+                              },
                             },
                           }}
                         >
@@ -439,7 +441,7 @@ const Post = ({
                             id={resource.id}
                             src={resource.src}
                             ratio="58%"
-                            cover={!isDesktop && !isOpen}
+                            cover
                           />
                         </div>
                       )}

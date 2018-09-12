@@ -21,7 +21,7 @@ Link below is internal link addded with special shortcode:
 
 [[ link text="Internal link to /posts/post-01" to="/posts/post-01" ]]
 
-For now we have followingn shortoces:
+For now we have following shortcodes:
 \`\`\`
 [ link text="About page" to="/about" ]
 [ youtube id="..." ]

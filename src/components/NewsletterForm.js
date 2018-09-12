@@ -29,6 +29,7 @@ const Input = styled.input({
   padding: em(12),
   fontWeight: 700,
   fontSize: rem(16),
+  color: colors.text.blue.dark,
   borderRadius: 5,
   border: `solid 2px ${colors.border.blue.normal}`,
   backgroundColor: 'transparent',
@@ -49,9 +50,10 @@ const Button = styled.button({
   color: 'white',
   borderRadius: 5,
   backgroundColor: colors.bg.blue.medium,
+  cursor: 'pointer',
 })
 
-const NewsletterForm = ({ ...rest }) => (
+const NewsletterForm = ({ name, ...rest }) => (
   <StyledNewsletterForm {...rest}>
     <div
       css={{
@@ -93,11 +95,11 @@ const NewsletterForm = ({ ...rest }) => (
         }}
       >
         <div css={{ display: 'flex', flexDirection: 'column' }}>
-          <WideLabel size="md" htmlFor="name">
+          <WideLabel size="md" htmlFor={`${name}-name`}>
             Name
           </WideLabel>
           <Input
-            id="name"
+            id={`${name}-name`}
             name="name"
             type="text"
             placeholder="John"
@@ -105,11 +107,11 @@ const NewsletterForm = ({ ...rest }) => (
           />
         </div>
         <div css={{ display: 'flex', flexDirection: 'column' }}>
-          <WideLabel size="md" htmlFor="email">
+          <WideLabel size="md" htmlFor={`${name}-email`}>
             Email
           </WideLabel>
           <Input
-            id="email"
+            id={`${name}-email`}
             name="email"
             type="email"
             placeholder="john-doe@gmail.com"

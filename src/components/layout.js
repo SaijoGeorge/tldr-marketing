@@ -2,7 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'react-emotion'
-import Media from 'react-media'
 
 import SocialIcon from './SocialIcon'
 import ExternalLink from './ExternalLink'
@@ -181,9 +180,7 @@ const Header = props => (
         <SocialIcons horizontal />
       </div>
     </div>
-    <Media query={media.query.max._sm}>
-      {isMobile => isMobile && <NewsletterForm />}
-    </Media>
+    <NewsletterForm name="mobile" css={{ [media._sm]: { display: 'none' } }} />
   </header>
 )
 
