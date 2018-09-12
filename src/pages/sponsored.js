@@ -3,13 +3,31 @@ import React from 'react'
 import Layout from '../components/Layout'
 import Author from '../components/Author'
 import Navbar from '../components/Navbar'
+import RenderMarkdown from '../components/RenderMarkdown'
 import TextContainer from '../components/TextContainer'
 import { ContentLayout } from '../styles/layouts'
-import { Paragraph, NavbarText, NavbarLink } from '../styles/typography'
+import { NavbarText, NavbarLink } from '../styles/typography'
 
-import { em } from '../styles/tools'
+import { em, rem } from '../styles/tools'
 
 const NavbarH1 = NavbarText.withComponent('h1')
+
+const content = `
+## Sponsored text
+
+This content is also written in markdown.
+
+Link below is internal link addded with special shortcode:
+
+[[ link text="Internal link to /posts/post-05" to="/posts/post-05" ]]
+
+For now we have followingn shortoces:
+\`\`\`
+[ link text="About page" to="/about" ]
+[ youtube id="..." ]
+[ video id="..." ]
+\`\`\`
+`
 
 const SponsoredPage = () => (
   <Layout>
@@ -36,33 +54,7 @@ const SponsoredPage = () => (
       <Author />
       <ContentLayout>
         <TextContainer style={{ gridArea: 'ContentLayoutContent' }}>
-          <Paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Paragraph>
-          <Paragraph css={{ marginTop: 20 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Paragraph>
-          <Paragraph css={{ marginTop: 20 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Paragraph>
+          <RenderMarkdown css={{ fontSize: rem(18) }}>{content}</RenderMarkdown>
         </TextContainer>
       </ContentLayout>
     </main>

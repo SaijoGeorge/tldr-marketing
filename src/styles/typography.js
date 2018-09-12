@@ -15,9 +15,12 @@ export const paragraphStyles = {
 
 export const markdownStyles = {
   ...paragraphStyles,
-  '> * + *': {
-    marginTop: rem(14),
-  },
+  '> * + *': { marginTop: rem(14) },
+  '> img + *, > * + img': { marginTop: rem(28) },
+  '> p > img': { margin: `${rem(28)} auto` },
+  'h1, h2, h3, h4, h5, h6': { fontWeight: 700 },
+  h2: { fontSize: 24 },
+  'h3, h4, h5, h6': { fontSize: 20 },
   li: {
     listStyle: 'disc',
     marginLeft: rem(19),
@@ -25,6 +28,12 @@ export const markdownStyles = {
   a: {
     color: colors.text.blue.medium,
     textDecoration: 'underline',
+  },
+  img: {
+    display: 'block',
+    maxHeight: '90vh',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 }
 

@@ -9,7 +9,7 @@ const TextContainer = styled.div({
     padding: `${rem(40)} ${rem(24)}`,
   },
   [media._sm]: {
-    padding: rem(40),
+    padding: rem(60),
     boxShadow: `0 5px 25px ${colors.shadow.blue.light}`,
     backgroundColor: 'white',
     borderRadius: '8px',

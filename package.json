@@ -26,6 +26,7 @@
     "react-media": "^1.8.0",
     "react-text-truncate": "^0.13.1",
     "react-toggled": "^1.2.7",
+    "remark-shortcodes": "^0.2.1",
     "remove-markdown": "^0.3.0",
     "url-parse": "^1.4.3"
   },

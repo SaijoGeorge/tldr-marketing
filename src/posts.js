@@ -12,7 +12,13 @@ const links = [
       w: 705,
       h: 306,
     },
-    description: `It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.`,
+    description: `
+It looks like with the latest version of Chrome (just go in and manually update if it did not auto update for you) HTTP sites are now marked with the Not Secure label along with the 🛈 mark in the address bar.
+    
+![Some test image](https://images.unsplash.com/photo-1536641480196-ed8d5b3ed21f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9e32ed3893fed0e0e5a1c5ef59861d3a&auto=format&fit=crop&w=2100&q=80)
+
+[[ youtube id="Kch8n4tcOZQ" ]]
+  `,
     category: 'sponsored',
     senderName: 'Saijo George',
     senderURL: 'https://twitter.com/@SaijoGeorge',
