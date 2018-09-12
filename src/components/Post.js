@@ -119,8 +119,6 @@ const PostThumb = React.forwardRef(({ src, alt, ...rest }, ref) => (
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       backgroundColor: colors.bg.blue.normal,
-      backgroundBlendMode: 'luminosity',
-      ':hover': { backgroundBlendMode: 'normal' },
       cursor: 'zoom-in',
       [media._sm]: {
         border: 'solid 1px #e0ebf1',

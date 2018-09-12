@@ -5,8 +5,6 @@ import { rem } from '../styles/tools'
 
 export const OuterLayout = styled.div({
   display: 'grid',
-  height: '100vh',
-  overflowY: 'auto',
   WebkitOverflowScrolling: 'touch',
   gridTemplate: `
     "OuterLayoutContent"
