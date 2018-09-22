@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: '/tldr-marketing',
   siteMetadata: {
-    title: '𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘',
+    title: 'tldr-marketing',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -9,7 +9,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: '𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘',
+        name: 'tldr-marketing',
         description:
           "Don't have the time to keep on top of all the changes influencing digital marketing? Get an 📧 with links to stories that impact Organic, Paid & Social Media Marketing news.",
         start_url: '/?addToHome=1',

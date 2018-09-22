@@ -42,7 +42,7 @@ const Author = props => (
         marginBottom: rem(13),
       }}
     >
-      Created by
+      Curated by
       <br />
       Saijo George
     </MediumHeading4>

@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop --host 192.168.1.97",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "serve": "gatsby build && gatsby serve",
     "format": "prettier --write 'src/**/*.js'",

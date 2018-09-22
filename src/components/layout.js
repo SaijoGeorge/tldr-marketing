@@ -171,7 +171,7 @@ const Header = props => (
             fontSize: rem(15),
           }}
         >
-          Created by
+          Curated by
           <br />
           Saijo George
         </MediumHeading4>
@@ -223,7 +223,7 @@ const Layout = ({ children }) => (
 
           <meta property="og:url" content="https://tldrmarketing.com" />
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="SEO News - 𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘" />
+          <meta property="og:title" content="SEO News - tldr-marketing" />
           {/* <meta
               property="og:image"
               content="https://tldrmarketing.com/images/testimonials.png"
@@ -239,7 +239,7 @@ const Layout = ({ children }) => (
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:creator" content="@SaijoGeorge" />
           <meta name="twitter:url" content="https://tldrmarketing.com" />
-          <meta name="twitter:title" content="SEO News - 𝕥𝕝;𝕕𝕣 𝕄𝕒𝕣𝕜𝕖𝕥𝕚𝕟𝕘" />
+          <meta name="twitter:title" content="SEO News - tldr-marketing" />
           <meta
             name="twitter:description"
             content="Don't have the time to keep on top of all the changes influencing digital marketing? Get an 📧 with links to stories that impact Organic, Paid & Social Media Marketing news."

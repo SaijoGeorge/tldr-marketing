@@ -49,7 +49,7 @@ const Author = props => (
         lineHeight: 1.3,
       }}
     >
-      Created by
+      Curated by
       <br />
       Saijo George
     </MediumHeading4>
